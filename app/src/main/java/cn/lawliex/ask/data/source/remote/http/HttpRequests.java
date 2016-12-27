@@ -1,0 +1,97 @@
+package cn.lawliex.ask.data.source.remote.http;
+
+import java.util.Map;
+
+import cn.lawliex.ask.ApplicationContract;
+import cn.lawliex.ask.data.User;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
+/**
+ * Created by Terence on 2016/12/27.
+ */
+
+public class HttpRequests {
+    private static String baseUrl = ApplicationContract.SERVER_ADDRESS;
+    private static HttpRequests instance = null;
+    private Observable<User> observable;
+    private Subscriber subscriber;
+    private HttpApi httpService;
+    private User user;
+    public static HttpRequests getInstance(){
+        if(instance == null){
+            synchronized (HttpRequests.class){
+                if(instance == null){
+                    instance = new HttpRequests();
+                }
+            }
+        }
+        return instance;
+    }
+    private HttpRequests(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        httpService = retrofit.create(HttpApi.class);
+        subscriber = new Subscriber<User>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(User tmp) {
+                user = tmp;
+            }
+        };
+
+    }
+    public User post(String path, Map<String, String> map) {
+        user = null;
+        if(map != null)
+            observable = httpService.post(path, map);
+        else
+            observable = httpService.post(path);
+
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        return  user;
+    }
+
+    public User get(String path, Map<String,String> map){
+        user = null;
+        if(map != null){
+            observable = httpService.get(path,map);
+        }else{
+            observable = httpService.get(path);
+        }
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        return user;
+
+    }
+    public HttpRequests baseUrl(String url){
+        baseUrl = url;
+        return instance;
+    }
+    public HttpRequests subscribe(Subscriber<User> subscriber){
+        this.subscriber = subscriber;
+        return instance;
+    }
+}

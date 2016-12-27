@@ -14,7 +14,4 @@ public interface UserDataSource {
         void onLoginFail();
     }
     void getUser(@NonNull int id,@NonNull LoginCallback callback);
-    void saveUser(@NonNull User user);
-    void editUser();
-
 }
