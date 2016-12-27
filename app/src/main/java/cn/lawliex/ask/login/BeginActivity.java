@@ -1,5 +1,6 @@
 package cn.lawliex.ask.login;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -16,17 +17,19 @@ public class BeginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begin);
         txt = (TextView)findViewById(R.id.txt);
-        loginPresenter = new LoginPresenter();
-        loginPresenter.login("lawliex", "123", new LoginContract.LoginCallback() {
-            @Override
-            public void onLoginSuccess(User user) {
-                txt.setText(user.getName());
-            }
-
-            @Override
-            public void onLoginFail() {
-                txt.setText("fail");
-            }
-        });
+        Intent intent = new Intent(BeginActivity.this, LoginActivity.class);
+        startActivity(intent);
+//        loginPresenter = new LoginPresenter();
+//        loginPresenter.login("login", "123", new LoginContract.LoginCallback() {
+//            @Override
+//            public void onLoginSuccess(User user) {
+//                txt.setText(user.getName());
+//            }
+//
+//            @Override
+//            public void onLoginFail() {
+//                txt.setText("fail");
+//            }
+//        });
     }
 }

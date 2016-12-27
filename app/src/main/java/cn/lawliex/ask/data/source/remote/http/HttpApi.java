@@ -3,6 +3,8 @@ package cn.lawliex.ask.data.source.remote.http;
 import java.util.Map;
 
 
+import cn.lawliex.ask.data.BaseResponse;
+import cn.lawliex.ask.data.LoginResponse;
 import cn.lawliex.ask.data.User;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -19,15 +21,15 @@ import rx.Observable;
 public interface HttpApi {
     @FormUrlEncoded
     @POST("{path}")
-    Observable<User> post(@Path("path") String path, @FieldMap Map<String, String> map);
+    Observable<BaseResponse> post(@Path("path") String path, @FieldMap Map<String, String> map);
 
     @FormUrlEncoded
     @POST("{path}")
-    Observable<User> post(@Path("path") String path);
+    Observable<BaseResponse> post(@Path("path") String path);
 
     @GET("{path}")
-    Observable<User> get(@Path("path") String path);
+    Observable<BaseResponse> get(@Path("path") String path);
 
     @GET("{path}")
-    Observable<User> get(@Path("path") String path, @QueryMap Map<String,String> map);
+    Observable<BaseResponse> get(@Path("path") String path, @QueryMap Map<String,String> map);
 }
