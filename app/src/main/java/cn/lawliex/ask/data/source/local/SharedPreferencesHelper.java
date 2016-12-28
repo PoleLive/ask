@@ -13,20 +13,24 @@ public class SharedPreferencesHelper {
     private Context context;
     public SharedPreferencesHelper(Context context){
         this.context = context;
-        sharedPreferences = context.getSharedPreferences("ask",Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("ask",Context.MODE_APPEND);
         editor = sharedPreferences.edit();
     }
     public void saveString(String key, String value){
        editor.putString(key,value);
+        editor.commit();
     }
     public void saveInt(String key, int value){
         editor.putInt(key, value);
+        editor.commit();
     }
     public void saveBoolean(String key, boolean value){
         editor.putBoolean(key, value);
+        editor.commit();
     }
     public String getString(String key){
         return sharedPreferences.getString(key,null);
+
     }
     public int getInt(String key){
         return sharedPreferences.getInt(key, 0);

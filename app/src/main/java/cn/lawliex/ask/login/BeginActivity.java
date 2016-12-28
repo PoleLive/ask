@@ -10,7 +10,7 @@ import cn.lawliex.ask.data.User;
 
 //程序入口
 public class BeginActivity extends AppCompatActivity {
-    LoginPresenter loginPresenter;
+
     TextView txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +20,6 @@ public class BeginActivity extends AppCompatActivity {
 
         Intent intent = new Intent(BeginActivity.this, LoginActivity.class);
         startActivity(intent);
-//        loginPresenter = new LoginPresenter();
-//        loginPresenter.login("login", "123", new LoginContract.LoginCallback() {
-//            @Override
-//            public void onLoginSuccess(User user) {
-//                txt.setText(user.getName());
-//            }
-//
-//            @Override
-//            public void onLoginFail() {
-//                txt.setText("fail");
-//            }
-//        });
+
     }
 }

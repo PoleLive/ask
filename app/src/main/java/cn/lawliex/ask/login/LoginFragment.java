@@ -1,6 +1,7 @@
 package cn.lawliex.ask.login;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
-import com.google.gson.Gson;
-import org.w3c.dom.Text;
 import cn.lawliex.ask.R;
-import cn.lawliex.ask.data.BaseResponse;
-import cn.lawliex.ask.data.LoginResponse;
-import cn.lawliex.ask.data.Result;
 import cn.lawliex.ask.data.User;
-import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
+import cn.lawliex.ask.question.list.QuestionListActivity;
+
 
 /**
  * Created by Terence on 2016/12/27.
@@ -84,15 +77,15 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     public boolean isUsernameValid(String username) {
         return true;
     }
-
     @Override
     public void toMainAct() {
-
+        Intent intent = new Intent(getActivity(), QuestionListActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
     @Override
     public void saveUser(User user) {
         localDataSource.saveUser(user);
-
     }
     @Override
     public void saveTicket(String ticket) {

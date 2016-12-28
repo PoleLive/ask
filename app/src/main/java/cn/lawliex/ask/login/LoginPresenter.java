@@ -3,16 +3,11 @@ package cn.lawliex.ask.login;
 import android.support.annotation.NonNull;
 
 import com.alibaba.fastjson.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import cn.lawliex.ask.ApplicationContract;
-import cn.lawliex.ask.data.BaseResponse;
-import cn.lawliex.ask.data.LoginResponse;
 import cn.lawliex.ask.data.Result;
 import cn.lawliex.ask.data.User;
-import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import rx.Subscriber;
 
@@ -24,6 +19,31 @@ public class LoginPresenter implements LoginContract.Presenter {
     LoginContract.View loginView;
     @Override
     public void start() {
+        Map<String,String> map = new HashMap<>();
+        String ticket = loginView.getTicket();
+        if(loginView.getTicket()!=null){
+
+            map.put("ticket",ticket);
+            HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(JSONObject jsonObject) {
+                    if(jsonObject.getInteger("code")== 0){
+                        loginView.toMainAct();
+                    }
+                }
+            }).post("test",map);
+        }
+
     }
     public LoginPresenter(@NonNull LoginContract.View loginView){
         this.loginView = loginView;
@@ -53,6 +73,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                             loginView.saveTicket(ticket);
                             User user = result.getData();
                             loginView.saveUser(user);
+                            loginView.toMainAct();
                         }
                         else
                             loginView.setErrorMessage(result.getMsg());
@@ -79,6 +100,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     public void onNext(JSONObject response) {
                         Result<User> result = new Result<User>(response,User.class);
                         loginView.setErrorMessage(response.getString("msg"));
+                        loginView.toMainAct();
                     }
                 })
                 .post("register",map);

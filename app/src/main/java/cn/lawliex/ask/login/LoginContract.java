@@ -16,15 +16,6 @@ import cn.lawliex.ask.data.source.UserDataSource;
  */
 
 public interface LoginContract {
-
-    interface LoginCallback{
-        void onLoginSuccess(JSONObject response);
-        void onLoginFail(String errMsg);
-    }
-    interface RegisterCallback{
-        void onRegisterSuccess(JSONObject response);
-        void onRegisterFail(String errMsg);
-    }
     interface Presenter extends BasePresenter{
         void login(@NonNull String username,@NonNull String password);
         void register(@NonNull String username, @NonNull String password);
