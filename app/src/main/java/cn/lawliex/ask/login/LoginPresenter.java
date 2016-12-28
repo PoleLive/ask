@@ -2,6 +2,8 @@ package cn.lawliex.ask.login;
 
 import android.support.annotation.NonNull;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,7 @@ import cn.lawliex.ask.ApplicationContract;
 import cn.lawliex.ask.data.BaseResponse;
 import cn.lawliex.ask.data.LoginResponse;
 import cn.lawliex.ask.data.User;
+import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import rx.Subscriber;
 
@@ -17,6 +20,7 @@ import rx.Subscriber;
  */
 
 public class LoginPresenter implements LoginContract.Presenter {
+
 
     @Override
     public void start() {
@@ -30,7 +34,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
         HttpRequests.getInstance()
                 .baseUrl(ApplicationContract.SERVER_ADDRESS)
-                .subscribe(new Subscriber<BaseResponse>() {
+                .subscribe(new Subscriber<JSONObject>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -39,11 +43,12 @@ public class LoginPresenter implements LoginContract.Presenter {
                         callback.onLoginFail(e.getMessage());
                     }
                     @Override
-                    public void onNext(BaseResponse response) {
-                        if(response.getCode() == 0)
+                    public void onNext(JSONObject response) {
+                        if(response.getInteger("code") == 0) {
                             callback.onLoginSuccess(response);
+                        }
                         else
-                            callback.onLoginFail(response.getMsg());
+                            callback.onLoginFail(response.getString("msg"));
                     }
                 })
                 .post("login",map);
@@ -57,7 +62,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
         HttpRequests.getInstance()
                 .baseUrl(ApplicationContract.SERVER_ADDRESS)
-                .subscribe(new Subscriber<BaseResponse>() {
+                .subscribe(new Subscriber<JSONObject>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -66,11 +71,11 @@ public class LoginPresenter implements LoginContract.Presenter {
                         callback.onRegisterFail(e.getMessage());
                     }
                     @Override
-                    public void onNext(BaseResponse response) {
-                        if(response.getCode() == 0)
+                    public void onNext(JSONObject response) {
+                        if(response.getInteger("code") == 0)
                             callback.onRegisterSuccess(response);
                         else
-                            callback.onRegisterFail(response.getMsg());
+                            callback.onRegisterFail(response.getString("msg"));
                     }
                 })
                 .post("register",map);

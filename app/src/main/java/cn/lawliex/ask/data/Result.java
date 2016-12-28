@@ -1,15 +1,14 @@
 package cn.lawliex.ask.data;
 
 /**
- * Created by Terence on 2016/12/27.
+ * Created by Terence on 2016/12/28.
  */
 
-public class BaseResponse {
+public class Result<T> {
+    private int code;
     private String msg;
     private String ticket;
-    private int code;
-    private Object data;
-
+    private T data;
 
     public int getCode() {
         return code;
@@ -17,14 +16,6 @@ public class BaseResponse {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
     }
 
     public String getMsg() {
@@ -41,5 +32,13 @@ public class BaseResponse {
 
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

@@ -1,5 +1,7 @@
 package cn.lawliex.ask.data.source.remote.http;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.Map;
 
 
@@ -21,15 +23,15 @@ import rx.Observable;
 public interface HttpApi {
     @FormUrlEncoded
     @POST("{path}")
-    Observable<BaseResponse> post(@Path("path") String path, @FieldMap Map<String, String> map);
+    Observable<JSONObject> post(@Path("path") String path, @FieldMap Map<String, String> map);
 
     @FormUrlEncoded
     @POST("{path}")
-    Observable<BaseResponse> post(@Path("path") String path);
+    Observable<JSONObject> post(@Path("path") String path);
 
     @GET("{path}")
-    Observable<BaseResponse> get(@Path("path") String path);
+    Observable<JSONObject> get(@Path("path") String path);
 
     @GET("{path}")
-    Observable<BaseResponse> get(@Path("path") String path, @QueryMap Map<String,String> map);
+    Observable<JSONObject> get(@Path("path") String path, @QueryMap Map<String,String> map);
 }

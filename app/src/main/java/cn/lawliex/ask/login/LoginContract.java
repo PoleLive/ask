@@ -2,6 +2,8 @@ package cn.lawliex.ask.login;
 
 import android.support.annotation.NonNull;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.lawliex.ask.BasePresenter;
 import cn.lawliex.ask.BaseView;
 import cn.lawliex.ask.data.BaseResponse;
@@ -16,11 +18,11 @@ import cn.lawliex.ask.data.source.UserDataSource;
 public interface LoginContract {
 
     interface LoginCallback{
-        void onLoginSuccess(BaseResponse response);
+        void onLoginSuccess(JSONObject response);
         void onLoginFail(String errMsg);
     }
     interface RegisterCallback{
-        void onRegisterSuccess(BaseResponse response);
+        void onRegisterSuccess(JSONObject response);
         void onRegisterFail(String errMsg);
     }
     interface Presenter extends BasePresenter{
@@ -34,6 +36,9 @@ public interface LoginContract {
         boolean isPasswordValid(String password);
         boolean isUsernameValid(String username);
         void toMainAct();
+        void saveUser(User user);
+        void saveTicket(String ticket);
+        String getTicket();
         void setErrorMessage(String error);
         void showLoginProgress(boolean show);
     }

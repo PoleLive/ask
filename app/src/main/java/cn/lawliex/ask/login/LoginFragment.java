@@ -8,11 +8,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.google.gson.Gson;
+
 import org.w3c.dom.Text;
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.data.BaseResponse;
 import cn.lawliex.ask.data.LoginResponse;
+import cn.lawliex.ask.data.Result;
 import cn.lawliex.ask.data.User;
+import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
+import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 
 /**
  * Created by Terence on 2016/12/27.
@@ -24,6 +34,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     TextView errorMsgTxt;
     Button loginBn, registerBn;
     EditText usernameEdit, passwordEdit;
+    UserLocalDataSource localDataSource;
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
         loginPresenter = presenter;
@@ -31,6 +42,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        localDataSource = UserLocalDataSource.getInstance(getActivity());
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,6 +95,22 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     }
 
     @Override
+    public void saveUser(User user) {
+        localDataSource.saveUser(user);
+
+    }
+
+    @Override
+    public void saveTicket(String ticket) {
+        localDataSource.saveTicket(ticket);
+    }
+
+    @Override
+    public String getTicket() {
+        return localDataSource.getTicket();
+    }
+
+    @Override
     public void setErrorMessage(String error) {
         errorMsgTxt.setText(error);
     }
@@ -98,8 +126,16 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
             case R.id.login_login_bn:
                 loginPresenter.login(getUsername(), getPassword(), new LoginContract.LoginCallback() {
                     @Override
-                    public void onLoginSuccess(BaseResponse response) {
+                    public void onLoginSuccess(JSONObject response) {
                         setErrorMessage("success");
+                        String ticket = response.getString("ticket");
+                        localDataSource.saveTicket(ticket);
+                        //JSON.parseObject(response, new TypeReference<Result<User>>() {}.getType());
+                        JSONObject obj = response.getJSONObject("data");
+                        User user = obj.toJavaObject(User.class);
+                       // Toast.makeText(getActivity(), ""+o.toString(), Toast.LENGTH_SHORT).show();
+                        localDataSource.saveUser(user);
+
                     }
 
                     @Override
@@ -112,8 +148,8 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
             case R.id.login_register_bn:
                 loginPresenter.register(getUsername(), getPassword(), new LoginContract.RegisterCallback() {
                     @Override
-                    public void onRegisterSuccess(BaseResponse response) {
-                        setErrorMessage(response.getMsg());
+                    public void onRegisterSuccess(JSONObject response) {
+                        setErrorMessage(response.getString("msg"));
                     }
 
                     @Override

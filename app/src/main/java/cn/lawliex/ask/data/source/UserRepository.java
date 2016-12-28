@@ -1,15 +1,14 @@
-package cn.lawliex.ask.data.source.remote;
+package cn.lawliex.ask.data.source;
 
 import android.support.annotation.NonNull;
 
 import cn.lawliex.ask.data.User;
-import cn.lawliex.ask.data.source.UserDataSource;
 
 /**
- * Created by Terence on 2016/12/27.
+ * Created by Terence on 2016/12/28.
  */
 
-public class UserRemoteDataSource implements UserDataSource {
+public class UserRepository implements UserDataSource {
     @Override
     public void getUser(@NonNull int id, @NonNull LoginCallback callback) {
 

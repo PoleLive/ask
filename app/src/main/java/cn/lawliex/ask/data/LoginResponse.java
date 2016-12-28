@@ -29,4 +29,10 @@ public class LoginResponse extends BaseResponse {
     public void setUser(User user) {
         super.setData(user);
     }
+//    public void setTicket(String ticket){
+//        super.setTicket(ticket);
+//    }
+//    public String getTicket(){
+//        return super.getTicket();
+//    }
 }

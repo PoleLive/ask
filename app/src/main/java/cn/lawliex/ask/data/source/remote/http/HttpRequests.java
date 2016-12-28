@@ -1,5 +1,7 @@
 package cn.lawliex.ask.data.source.remote.http;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.Map;
 
 import cn.lawliex.ask.ApplicationContract;
@@ -20,10 +22,10 @@ import rx.schedulers.Schedulers;
 public class HttpRequests {
     private static String baseUrl = ApplicationContract.SERVER_ADDRESS;
     private static HttpRequests instance = null;
-    private Observable<BaseResponse> observable;
+    private Observable<JSONObject> observable;
     private Subscriber subscriber;
     private HttpApi httpService;
-    private BaseResponse response;
+    private JSONObject response;
     public static HttpRequests getInstance(){
         if(instance == null){
             synchronized (HttpRequests.class){
@@ -41,7 +43,7 @@ public class HttpRequests {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         httpService = retrofit.create(HttpApi.class);
-        subscriber = new Subscriber<BaseResponse>() {
+        subscriber = new Subscriber<JSONObject>() {
             @Override
             public void onCompleted() {
 
@@ -53,13 +55,13 @@ public class HttpRequests {
             }
 
             @Override
-            public void onNext(BaseResponse tmp) {
+            public void onNext(JSONObject tmp) {
                 response = tmp;
             }
         };
 
     }
-    public BaseResponse post(String path, Map<String, String> map) {
+    public JSONObject post(String path, Map<String, String> map) {
         response = null;
         if(map != null)
             observable = httpService.post(path, map);
@@ -73,7 +75,7 @@ public class HttpRequests {
         return  response;
     }
 
-    public BaseResponse get(String path, Map<String,String> map){
+    public JSONObject get(String path, Map<String,String> map){
         response = null;
         if(map != null){
             observable = httpService.get(path,map);
@@ -91,7 +93,7 @@ public class HttpRequests {
         baseUrl = url;
         return instance;
     }
-    public HttpRequests subscribe(Subscriber<BaseResponse> subscriber){
+    public HttpRequests subscribe(Subscriber<JSONObject> subscriber){
         this.subscriber = subscriber;
         return instance;
     }
