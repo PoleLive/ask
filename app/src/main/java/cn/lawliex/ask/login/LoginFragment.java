@@ -9,12 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.google.gson.Gson;
-
 import org.w3c.dom.Text;
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.data.BaseResponse;
@@ -93,13 +91,11 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     public void toMainAct() {
 
     }
-
     @Override
     public void saveUser(User user) {
         localDataSource.saveUser(user);
 
     }
-
     @Override
     public void saveTicket(String ticket) {
         localDataSource.saveTicket(ticket);
@@ -128,14 +124,13 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
                     @Override
                     public void onLoginSuccess(JSONObject response) {
                         setErrorMessage("success");
-                        String ticket = response.getString("ticket");
+                        Result<User> result = new Result<User>(response,User.class);
+                        String ticket = result.getTicket();
                         localDataSource.saveTicket(ticket);
                         //JSON.parseObject(response, new TypeReference<Result<User>>() {}.getType());
-                        JSONObject obj = response.getJSONObject("data");
-                        User user = obj.toJavaObject(User.class);
+                        User user = result.getData();
                        // Toast.makeText(getActivity(), ""+o.toString(), Toast.LENGTH_SHORT).show();
                         localDataSource.saveUser(user);
-
                     }
 
                     @Override
@@ -144,14 +139,12 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
                     }
                 });
                 break;
-
             case R.id.login_register_bn:
                 loginPresenter.register(getUsername(), getPassword(), new LoginContract.RegisterCallback() {
                     @Override
                     public void onRegisterSuccess(JSONObject response) {
                         setErrorMessage(response.getString("msg"));
                     }
-
                     @Override
                     public void onRegisterFail(String errMsg) {
                         setErrorMessage(errMsg);

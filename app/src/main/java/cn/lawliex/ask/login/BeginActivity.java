@@ -17,6 +17,7 @@ public class BeginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_begin);
         txt = (TextView)findViewById(R.id.txt);
+
         Intent intent = new Intent(BeginActivity.this, LoginActivity.class);
         startActivity(intent);
 //        loginPresenter = new LoginPresenter();

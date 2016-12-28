@@ -10,6 +10,7 @@ import java.util.Map;
 import cn.lawliex.ask.ApplicationContract;
 import cn.lawliex.ask.data.BaseResponse;
 import cn.lawliex.ask.data.LoginResponse;
+import cn.lawliex.ask.data.Result;
 import cn.lawliex.ask.data.User;
 import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
@@ -20,11 +21,8 @@ import rx.Subscriber;
  */
 
 public class LoginPresenter implements LoginContract.Presenter {
-
-
     @Override
     public void start() {
-
     }
     @Override
     public void login(@NonNull String username, @NonNull String password, @NonNull final LoginContract.LoginCallback callback) {
@@ -44,22 +42,22 @@ public class LoginPresenter implements LoginContract.Presenter {
                     }
                     @Override
                     public void onNext(JSONObject response) {
-                        if(response.getInteger("code") == 0) {
+                        Result<User> result = new Result<User>(response,User.class);
+
+                        if(result.getCode() == 0) {
                             callback.onLoginSuccess(response);
                         }
                         else
-                            callback.onLoginFail(response.getString("msg"));
+                            callback.onLoginFail(result.getMsg());
                     }
                 })
                 .post("login",map);
     }
-
     @Override
     public void register(@NonNull String username, @NonNull String password, @NonNull final LoginContract.RegisterCallback callback) {
         Map<String,String> map = new HashMap<>();
         map.put("username",username);
         map.put("password",password);
-
         HttpRequests.getInstance()
                 .baseUrl(ApplicationContract.SERVER_ADDRESS)
                 .subscribe(new Subscriber<JSONObject>() {
@@ -72,10 +70,11 @@ public class LoginPresenter implements LoginContract.Presenter {
                     }
                     @Override
                     public void onNext(JSONObject response) {
-                        if(response.getInteger("code") == 0)
+                        Result<User> result = new Result<User>(response,User.class);
+                        if(result.getCode() == 0)
                             callback.onRegisterSuccess(response);
                         else
-                            callback.onRegisterFail(response.getString("msg"));
+                            callback.onRegisterFail(result.getMsg());
                     }
                 })
                 .post("register",map);
