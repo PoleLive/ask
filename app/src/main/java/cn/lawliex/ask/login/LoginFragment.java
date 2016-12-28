@@ -51,10 +51,8 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
         loginBn = (Button)view.findViewById(R.id.login_login_bn);
         registerBn = (Button)view.findViewById(R.id.login_register_bn);
         errorMsgTxt = (TextView)view.findViewById(R.id.login_msg_txt);
-
         initListener();
         return view;
-
     }
     private void initListener(){
         loginBn.setOnClickListener(this);
@@ -115,41 +113,14 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     public void showLoginProgress(boolean show) {
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login_login_bn:
-                loginPresenter.login(getUsername(), getPassword(), new LoginContract.LoginCallback() {
-                    @Override
-                    public void onLoginSuccess(JSONObject response) {
-                        setErrorMessage("success");
-                        Result<User> result = new Result<User>(response,User.class);
-                        String ticket = result.getTicket();
-                        localDataSource.saveTicket(ticket);
-                        //JSON.parseObject(response, new TypeReference<Result<User>>() {}.getType());
-                        User user = result.getData();
-                       // Toast.makeText(getActivity(), ""+o.toString(), Toast.LENGTH_SHORT).show();
-                        localDataSource.saveUser(user);
-                    }
-
-                    @Override
-                    public void onLoginFail(String errMsg) {
-                        setErrorMessage(errMsg);
-                    }
-                });
+                loginPresenter.login(getUsername(), getPassword());
                 break;
             case R.id.login_register_bn:
-                loginPresenter.register(getUsername(), getPassword(), new LoginContract.RegisterCallback() {
-                    @Override
-                    public void onRegisterSuccess(JSONObject response) {
-                        setErrorMessage(response.getString("msg"));
-                    }
-                    @Override
-                    public void onRegisterFail(String errMsg) {
-                        setErrorMessage(errMsg);
-                    }
-                });
+                loginPresenter.register(getUsername(), getPassword());
                 break;
         }
     }

@@ -21,15 +21,19 @@ import rx.Subscriber;
  */
 
 public class LoginPresenter implements LoginContract.Presenter {
+    LoginContract.View loginView;
     @Override
     public void start() {
     }
+    public LoginPresenter(@NonNull LoginContract.View loginView){
+        this.loginView = loginView;
+    }
     @Override
-    public void login(@NonNull String username, @NonNull String password, @NonNull final LoginContract.LoginCallback callback) {
+    public void login(@NonNull String username, @NonNull String password) {
+
         Map<String,String> map = new HashMap<>();
         map.put("username",username);
         map.put("password",password);
-
         HttpRequests.getInstance()
                 .baseUrl(ApplicationContract.SERVER_ADDRESS)
                 .subscribe(new Subscriber<JSONObject>() {
@@ -38,23 +42,26 @@ public class LoginPresenter implements LoginContract.Presenter {
                     }
                     @Override
                     public void onError(Throwable e) {
-                        callback.onLoginFail(e.getMessage());
+                        loginView.setErrorMessage(e.getMessage());
                     }
                     @Override
                     public void onNext(JSONObject response) {
                         Result<User> result = new Result<User>(response,User.class);
-
                         if(result.getCode() == 0) {
-                            callback.onLoginSuccess(response);
+                            loginView.setErrorMessage("success");
+                            String ticket = result.getTicket();
+                            loginView.saveTicket(ticket);
+                            User user = result.getData();
+                            loginView.saveUser(user);
                         }
                         else
-                            callback.onLoginFail(result.getMsg());
+                            loginView.setErrorMessage(result.getMsg());
                     }
                 })
                 .post("login",map);
     }
     @Override
-    public void register(@NonNull String username, @NonNull String password, @NonNull final LoginContract.RegisterCallback callback) {
+    public void register(@NonNull String username, @NonNull String password) {
         Map<String,String> map = new HashMap<>();
         map.put("username",username);
         map.put("password",password);
@@ -66,15 +73,12 @@ public class LoginPresenter implements LoginContract.Presenter {
                     }
                     @Override
                     public void onError(Throwable e) {
-                        callback.onRegisterFail(e.getMessage());
+                        loginView.setErrorMessage(e.getMessage());
                     }
                     @Override
                     public void onNext(JSONObject response) {
                         Result<User> result = new Result<User>(response,User.class);
-                        if(result.getCode() == 0)
-                            callback.onRegisterSuccess(response);
-                        else
-                            callback.onRegisterFail(result.getMsg());
+                        loginView.setErrorMessage(response.getString("msg"));
                     }
                 })
                 .post("register",map);

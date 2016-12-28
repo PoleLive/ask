@@ -26,8 +26,8 @@ public interface LoginContract {
         void onRegisterFail(String errMsg);
     }
     interface Presenter extends BasePresenter{
-        void login(@NonNull String username,@NonNull String password,@NonNull LoginCallback callback);
-        void register(@NonNull String username, @NonNull String password, @NonNull RegisterCallback callback);
+        void login(@NonNull String username,@NonNull String password);
+        void register(@NonNull String username, @NonNull String password);
 
     }
     interface View extends BaseView<Presenter>{

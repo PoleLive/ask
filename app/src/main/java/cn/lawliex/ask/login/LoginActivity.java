@@ -15,9 +15,7 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginFragment = (LoginFragment) getFragmentManager().findFragmentById(R.id.login_fragment);
-        loginPresenter = new LoginPresenter();
+        loginPresenter = new LoginPresenter(loginFragment);
         loginFragment.setPresenter(loginPresenter);
-
-
     }
 }
