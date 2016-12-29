@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".login.BeginActivity"></activity>
+        <activity android:name=".login.BeginActivity" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,13 +20,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".questionlist.QuestionListActivity"
-            android:label="@string/title_activity_question_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".question.list.QuestionListActivity"
             android:label="@string/title_activity_question_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".question.add.QuestionAddActivity" />
+        <activity
+            android:name=".question.detail.QuestionDetailActivity"
+            android:launchMode="singleInstance" />
+        <activity android:name=".answer.add.AnswerAddActivity" />
+        <activity android:name=".answer.detail.AnswerDetailActivity"></activity>
     </application>
 
 </manifest>

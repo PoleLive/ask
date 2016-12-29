@@ -1,5 +1,6 @@
 package cn.lawliex.ask.question.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.question.add.QuestionAddActivity;
 
 public class QuestionListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,8 +30,10 @@ public class QuestionListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent intent = new Intent(QuestionListActivity.this, QuestionAddActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -40,7 +44,7 @@ public class QuestionListActivity extends AppCompatActivity
         toggle.syncState();
         QuestionListFragment fragment = (QuestionListFragment) getFragmentManager().findFragmentById(R.id.question_list_fragment);
         QuestionListPresenter presenter = new QuestionListPresenter(fragment);
-        fragment.setPresenter(presenter);
+        //fragment.setPresenter(presenter);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

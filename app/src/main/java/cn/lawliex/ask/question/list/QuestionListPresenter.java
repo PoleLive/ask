@@ -19,6 +19,7 @@ import rx.Subscriber;
 
 public class QuestionListPresenter implements QuestionListContract.Presenter {
     QuestionListContract.View questionListView;
+
     @Override
     public void loadQuestionList() {
         Map<String,String> map = AskHelper.getRequestMap(questionListView.getContext());
@@ -56,6 +57,7 @@ public class QuestionListPresenter implements QuestionListContract.Presenter {
 
     public QuestionListPresenter(QuestionListContract.View questionListView) {
         this.questionListView = questionListView;
-        start();
+        questionListView.setPresenter(this);
+        //start();
     }
 }

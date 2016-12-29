@@ -12,5 +12,9 @@ public class UrlContract {
     public static final String REGISTER_PATH = "register";
     public static final String TEST_LOGINED = "test";
     public static final String QUESTION_LIST = "question/list";
+    public static final String QUESTION_ADD = "question/add";
+    public static final String QUESTION_DETAIL = "question/detail";
+    public static final String ANSWER_ADD = "answer/add";
+    public static final String ANSWER_LIST = "answer/list";
 
 }

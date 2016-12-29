@@ -16,7 +16,6 @@ public interface QuestionListContract {
 
     interface Presenter extends BasePresenter{
         void loadQuestionList();
-
     }
     interface View extends BaseView<Presenter>{
         Context getContext();

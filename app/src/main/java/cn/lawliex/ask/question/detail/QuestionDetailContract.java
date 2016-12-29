@@ -1,5 +1,7 @@
 package cn.lawliex.ask.question.detail;
 
+import android.app.Activity;
+
 import cn.lawliex.ask.BasePresenter;
 import cn.lawliex.ask.BaseView;
 import cn.lawliex.ask.data.Question;
@@ -10,22 +12,16 @@ import cn.lawliex.ask.data.Question;
  */
 
 public interface QuestionDetailContract {
-    interface LoadQuestionCallback{
-        void onLoadSuccess(Question question);
-        void onLoadFail(String errMsg);
-    }
-    interface FollowCallback{
-        void onFollowSuccess(int entityId, int entityType);
-        void onFollowFail(String errMsg);
-    }
+
     interface Presenter extends BasePresenter{
-        void loadQuestion(LoadQuestionCallback callback);
-        void followQuestion(FollowCallback callback);
-        void followUser(FollowCallback callback);
+        void loadQuestion(int questionId);
+        void followQuestion(int questionId);
+        void followUser(int userId);
     }
     interface View extends BaseView<Presenter>{
         void showErrorView(String errMsg);
         void showQuestionDetail(Question question);
         void showLoadingView(int progress);
+        Activity getActivity();
     }
 }
