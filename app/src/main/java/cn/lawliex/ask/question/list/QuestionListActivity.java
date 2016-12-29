@@ -17,7 +17,6 @@ import cn.lawliex.ask.R;
 
 public class QuestionListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +38,9 @@ public class QuestionListActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        QuestionListFragment fragment = (QuestionListFragment) getFragmentManager().findFragmentById(R.id.question_list_fragment);
+        QuestionListPresenter presenter = new QuestionListPresenter(fragment);
+        fragment.setPresenter(presenter);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

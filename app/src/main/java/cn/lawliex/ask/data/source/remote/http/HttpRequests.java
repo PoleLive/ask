@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.Map;
 
 import cn.lawliex.ask.ApplicationContract;
+import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.BaseResponse;
 import cn.lawliex.ask.data.User;
 import retrofit2.Retrofit;
@@ -20,7 +21,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class HttpRequests {
-    private static String baseUrl = ApplicationContract.SERVER_ADDRESS;
+    private static String baseUrl = UrlContract.SERVER_ADDRESS;
     private static HttpRequests instance = null;
     private Observable<JSONObject> observable;
     private Subscriber subscriber;
@@ -63,7 +64,16 @@ public class HttpRequests {
     }
     public JSONObject post(String path, Map<String, String> map) {
         response = null;
-        if(map != null)
+
+        if(path.split("/").length > 1){
+            String root = path.split("/")[0];
+            path = path.split("/")[1];
+            if(map != null)
+                observable = httpService.post(root, path, map);
+            else
+                observable = httpService.post(root, path);
+        }
+        else if(map != null)
             observable = httpService.post(path, map);
         else
             observable = httpService.post(path);

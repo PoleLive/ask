@@ -24,7 +24,13 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST("{path}")
     Observable<JSONObject> post(@Path("path") String path, @FieldMap Map<String, String> map);
+    @FormUrlEncoded
+    @POST("{root}/{path}")
+    Observable<JSONObject> post(@Path("root") String root,@Path("path") String path, @FieldMap Map<String, String> map);
 
+    @FormUrlEncoded
+    @POST("{root}/{path}")
+    Observable<JSONObject> post(@Path("root") String root,@Path("path") String path);
     @FormUrlEncoded
     @POST("{path}")
     Observable<JSONObject> post(@Path("path") String path);

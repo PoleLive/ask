@@ -12,5 +12,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="cn.lawliex.ask.question.list.QuestionListActivity"
     tools:showIn="@layout/app_bar_question_list">
-
+    <fragment
+        android:id="@+id/question_list_fragment"
+        android:name="cn.lawliex.ask.question.list.QuestionListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </RelativeLayout>

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import cn.lawliex.ask.ApplicationContract;
+import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.Result;
 import cn.lawliex.ask.data.User;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
@@ -22,26 +23,21 @@ public class LoginPresenter implements LoginContract.Presenter {
         Map<String,String> map = new HashMap<>();
         String ticket = loginView.getTicket();
         if(loginView.getTicket()!=null){
-
             map.put("ticket",ticket);
             HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
                 @Override
                 public void onCompleted() {
-
                 }
-
                 @Override
                 public void onError(Throwable e) {
-
                 }
-
                 @Override
                 public void onNext(JSONObject jsonObject) {
                     if(jsonObject.getInteger("code")== 0){
                         loginView.toMainAct();
                     }
                 }
-            }).post("test",map);
+            }).post(UrlContract.TEST_LOGINED, map);
         }
 
     }
@@ -55,7 +51,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         map.put("username",username);
         map.put("password",password);
         HttpRequests.getInstance()
-                .baseUrl(ApplicationContract.SERVER_ADDRESS)
                 .subscribe(new Subscriber<JSONObject>() {
                     @Override
                     public void onCompleted() {
@@ -79,7 +74,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                             loginView.setErrorMessage(result.getMsg());
                     }
                 })
-                .post("login",map);
+                .post(UrlContract.LOGIN_PATH,map);
     }
     @Override
     public void register(@NonNull String username, @NonNull String password) {
@@ -87,7 +82,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         map.put("username",username);
         map.put("password",password);
         HttpRequests.getInstance()
-                .baseUrl(ApplicationContract.SERVER_ADDRESS)
                 .subscribe(new Subscriber<JSONObject>() {
                     @Override
                     public void onCompleted() {
@@ -103,6 +97,6 @@ public class LoginPresenter implements LoginContract.Presenter {
                         loginView.toMainAct();
                     }
                 })
-                .post("register",map);
+                .post(UrlContract.REGISTER_PATH,map);
     }
 }

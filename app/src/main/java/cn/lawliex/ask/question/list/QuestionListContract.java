@@ -1,5 +1,7 @@
 package cn.lawliex.ask.question.list;
 
+import android.content.Context;
+
 import java.util.List;
 
 import cn.lawliex.ask.BasePresenter;
@@ -11,19 +13,19 @@ import cn.lawliex.ask.data.Question;
  */
 
 public interface QuestionListContract {
-    interface LoadQuestionsCallback{
-        void onLoadSuccess(List<Question> questions);
-        void onLoadFail(String errMsg);
-    }
+
     interface Presenter extends BasePresenter{
-        void loadQuestionList(LoadQuestionsCallback callback);
+        void loadQuestionList();
 
     }
     interface View extends BaseView<Presenter>{
+        Context getContext();
         void showErrorView(String errMsg);
+        void showLoadSuccessView(String msg);
         void showQuestionList(Question question);
         void showLoadingView(int progress);
         void toDetailAct(int id);
+        void setListDatas(List<Question> questions);
 
     }
 }
