@@ -27,5 +27,5 @@ public class UrlContract {
     public static final String ISFOLLOWER = "follow/isfollower";
     //判断并改变状态
     public static final String ISFOLLOWERED = "follow/isfollowered";
-
+    public static final String USREINFO = "user/info";
 }

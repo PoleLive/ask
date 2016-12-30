@@ -122,8 +122,9 @@ public class QuestionListActivity extends AppCompatActivity
 
         if (id == R.id.profile) {
             Intent intent = new Intent(this, UserInfoDetailActivity.class);
-            //UserLocalDataSource userLocalDataSource = UserLocalDataSource.getInstance(this);
-            //intent.putExtra("userId",userLocalDataSource.getInt("id",0));
+            UserLocalDataSource userLocalDataSource = UserLocalDataSource.getInstance(QuestionListActivity.this);
+
+            intent.putExtra("userId",userLocalDataSource.getInt("id",0));
             startActivity(intent);
         } else if (id == R.id.collection) {
 

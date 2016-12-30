@@ -60,10 +60,7 @@ public class UserLocalDataSource implements UserDataSource {
         return defaultStr;
     }
     public int getInt(String key, int defaultStr) {
-        if(spHelper.getString(key) != null){
-            return spHelper.getInt(key);
-        }
-        return defaultStr;
+        return spHelper.getInt(key);
     }
     @Override
     public String getTicket() {

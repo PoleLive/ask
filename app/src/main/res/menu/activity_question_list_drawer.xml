@@ -13,11 +13,11 @@
         <item
             android:id="@+id/follow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="关注" />
+            android:title="消息" />
         <item
             android:id="@+id/followee"
             android:icon="@drawable/ic_menu_manage"
-            android:title="粉丝" />
+            android:title="关注" />
     </group>
 
     <item android:title="Communicate">

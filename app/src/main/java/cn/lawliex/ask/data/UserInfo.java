@@ -7,13 +7,21 @@ package cn.lawliex.ask.data;
 public class UserInfo {
     private int id;
     private String name;
-    private String email;
     private String motto;
-    private int followerCount;
-    private int followeeCount;
+    private String headUrl;
     private int answerCount;
     private int questionCount;
-    private int followQuestionCount;
+    private int followingCount;
+    private int followeeCount;
+    private int likeCount;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -21,14 +29,6 @@ public class UserInfo {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getMotto() {
@@ -39,20 +39,12 @@ public class UserInfo {
         this.motto = motto;
     }
 
-    public int getFollowerCount() {
-        return followerCount;
+    public String getHeadUrl() {
+        return headUrl;
     }
 
-    public void setFollowerCount(int followerCount) {
-        this.followerCount = followerCount;
-    }
-
-    public int getFolloweeCount() {
-        return followeeCount;
-    }
-
-    public void setFolloweeCount(int followeeCount) {
-        this.followeeCount = followeeCount;
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
     }
 
     public int getAnswerCount() {
@@ -71,20 +63,27 @@ public class UserInfo {
         this.questionCount = questionCount;
     }
 
-    public int getFollowQuestionCount() {
-        return followQuestionCount;
+    public int getFollowingCount() {
+        return followingCount;
     }
 
-    public void setFollowQuestionCount(int followQuestionCount) {
-        this.followQuestionCount = followQuestionCount;
+    public void setFollowingCount(int followingCount) {
+        this.followingCount = followingCount;
     }
 
-    public int getId() {
-
-        return id;
+    public int getFolloweeCount() {
+        return followeeCount;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setFolloweeCount(int followeeCount) {
+        this.followeeCount = followeeCount;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
     }
 }
