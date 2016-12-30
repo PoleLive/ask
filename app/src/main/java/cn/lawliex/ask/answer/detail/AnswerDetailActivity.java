@@ -11,5 +11,9 @@ public class AnswerDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer_detail);
+        AnswerDetailFragment fragment = (AnswerDetailFragment)getFragmentManager().findFragmentById(R.id.answer_detail_fragment);
+        AnswerDetailContract.Presenter presenter = new AnswerDetailPresenter(fragment);
+        presenter.start();
+
     }
 }

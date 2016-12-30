@@ -16,5 +16,6 @@ public class UrlContract {
     public static final String QUESTION_DETAIL = "question/detail";
     public static final String ANSWER_ADD = "answer/add";
     public static final String ANSWER_LIST = "answer/list";
+    public static final String ANSWER_DETAIL = "answer/detail";
 
 }

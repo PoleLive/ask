@@ -16,5 +16,6 @@ public interface UserDataSource {
     void getUser(@NonNull int id,@NonNull LoginCallback callback);
     void saveUser(@NonNull User user);
     void saveTicket(String ticket);
+    String getString(String key,String defaultStr);
     String getTicket();
 }

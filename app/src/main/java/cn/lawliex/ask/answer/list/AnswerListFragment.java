@@ -1,17 +1,20 @@
 package cn.lawliex.ask.answer.list;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.answer.detail.AnswerDetailActivity;
 import cn.lawliex.ask.data.Answer;
 
 /**
@@ -50,8 +53,18 @@ public class AnswerListFragment extends Fragment implements AnswerListContract.V
         View view = inflater.inflate(R.layout.answer_list_fragment, container, false);
 
         answerListView = (ListView)view.findViewById(R.id.answer_list_view);
-
+        initListener();
         return view;
+    }
+    public void initListener(){
+        answerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), AnswerDetailActivity.class);
+                intent.putExtra("answerId",answers.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

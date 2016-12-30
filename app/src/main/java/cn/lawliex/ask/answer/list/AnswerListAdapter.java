@@ -59,7 +59,7 @@ public class AnswerListAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         Answer answer = answers.get(position);
-        //viewHolder.usernameTxt.setText(answer.getUserId());
+        viewHolder.usernameTxt.setText(answer.getAuthor());
         viewHolder.contentTxt.setText(answer.getContent());
         viewHolder.commentCountTxt.setText(""+ 0);
         viewHolder.likeCountTxt.setText(""+0);

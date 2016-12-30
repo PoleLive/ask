@@ -53,16 +53,19 @@ public class UserLocalDataSource implements UserDataSource {
     }
 
     @Override
+    public String getString(String key, String defaultStr) {
+        if(spHelper.getString(key) != null){
+            return spHelper.getString(key);
+        }
+        return defaultStr;
+    }
+
+    @Override
     public String getTicket() {
         return spHelper.getString("ticket");
     }
 
     public void logout(){
-        spHelper.saveInt("id",0);
-        spHelper.saveString("email",null);
-        spHelper.saveString("password",null);
-        spHelper.saveString("headUrl",null);
-        spHelper.saveString("salt",null);
-        spHelper.saveString("headUrlLocal",null);
+
     }
 }

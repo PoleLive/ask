@@ -26,6 +26,11 @@ public class UserRemoteDataSource implements UserDataSource {
     }
 
     @Override
+    public String getString(String key, String defaultStr) {
+        return null;
+    }
+
+    @Override
     public String getTicket() {
         return null;
     }

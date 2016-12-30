@@ -14,8 +14,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.data.source.local.UserLocalDataSource;
+import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.login.LoginActivity;
 import cn.lawliex.ask.question.add.QuestionAddActivity;
+import cn.lawliex.ask.util.AskHelper;
+import rx.Subscriber;
 
 public class QuestionListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,7 +52,6 @@ public class QuestionListActivity extends AppCompatActivity
         QuestionListFragment fragment = (QuestionListFragment) getFragmentManager().findFragmentById(R.id.question_list_fragment);
         QuestionListPresenter presenter = new QuestionListPresenter(fragment);
         //fragment.setPresenter(presenter);
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
@@ -76,6 +82,28 @@ public class QuestionListActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(JSONObject jsonObject) {
+                    if (jsonObject.getInteger("code") == 0){
+                        UserLocalDataSource.getInstance(QuestionListActivity.this).logout();
+                        Intent intent = new Intent(QuestionListActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        QuestionListActivity.this.finish();
+                    }
+                }
+            }).post("logout", AskHelper.getRequestMap(this));
+
             return true;
         }
 

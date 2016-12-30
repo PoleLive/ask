@@ -15,7 +15,7 @@ public class AnswerDetailContract {
         void loadAnswer();
     }
     public interface View extends BaseView<Presenter>{
-        Activity getActivity();
         void showAnswer(Answer answer);
+
     }
 }

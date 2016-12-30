@@ -29,7 +29,8 @@
             android:name=".question.detail.QuestionDetailActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".answer.add.AnswerAddActivity" />
-        <activity android:name=".answer.detail.AnswerDetailActivity"></activity>
+        <activity android:name=".answer.detail.AnswerDetailActivity" />
+        <activity android:name=".profile.other.detail.UserInfoDetailActivity"></activity>
     </application>
 
 </manifest>

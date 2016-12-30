@@ -94,6 +94,10 @@ public class LoginPresenter implements LoginContract.Presenter {
                     public void onNext(JSONObject response) {
                         Result<User> result = new Result<User>(response,User.class);
                         loginView.setErrorMessage(response.getString("msg"));
+                        String ticket = result.getTicket();
+                        loginView.saveTicket(ticket);
+                        User user = result.getData();
+                        loginView.saveUser(user);
                         loginView.toMainAct();
                     }
                 })

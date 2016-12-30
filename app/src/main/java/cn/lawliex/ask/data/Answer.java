@@ -14,6 +14,24 @@ public class Answer {
     private int status;
     private Date createdDate;
     private String content;
+    private String author;
+    private String questionTitle;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getQuestionTitle() {
+        return questionTitle;
+    }
+
+    public void setQuestionTitle(String questionTitle) {
+        this.questionTitle = questionTitle;
+    }
 
     public int getId() {
         return id;

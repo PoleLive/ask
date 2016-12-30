@@ -44,6 +44,8 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
         loginBn = (Button)view.findViewById(R.id.login_login_bn);
         registerBn = (Button)view.findViewById(R.id.login_register_bn);
         errorMsgTxt = (TextView)view.findViewById(R.id.login_msg_txt);
+        usernameEdit.setText(localDataSource.getString("name",""));
+        passwordEdit.setText(localDataSource.getString("password",""));
         initListener();
         return view;
     }
