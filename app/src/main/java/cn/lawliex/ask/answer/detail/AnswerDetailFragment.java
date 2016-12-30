@@ -1,25 +1,32 @@
 package cn.lawliex.ask.answer.detail;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.data.Answer;
+import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
 
 /**
  * Created by Terence on 2016/12/29.
  */
 
-public class AnswerDetailFragment extends Fragment implements AnswerDetailContract.View {
+public class AnswerDetailFragment extends Fragment implements AnswerDetailContract.View, View.OnClickListener {
     AnswerDetailContract.Presenter presenter;
     TextView titleTxt;
     TextView contentTxt;
     TextView authorTxt;
+    ImageView headImg;
+
 
     @Override
     public void showAnswer(Answer answer) {
@@ -45,6 +52,14 @@ public class AnswerDetailFragment extends Fragment implements AnswerDetailContra
         titleTxt = (TextView)view.findViewById(R.id.answer_detail_questionTitle);
         authorTxt = (TextView)view.findViewById(R.id.answer_detail_author);
         contentTxt = (TextView)view.findViewById(R.id.answer_detail_content);
+        headImg = (ImageView) view.findViewById(R.id.answer_detail_img_head);
+        headImg.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), UserInfoDetailActivity.class);
+        startActivity(intent);
     }
 }

@@ -17,11 +17,15 @@ public interface QuestionDetailContract {
         void loadQuestion(int questionId);
         void followQuestion(int questionId);
         void followUser(int userId);
+        void unFollowQuestion(int questionId);
+        void checkIsFollower(int questionId);
     }
     interface View extends BaseView<Presenter>{
         void showErrorView(String errMsg);
         void showQuestionDetail(Question question);
         void showLoadingView(int progress);
+        void changeFollowBn(boolean follow);
+        boolean getFollowBnStatus();
         Activity getActivity();
     }
 }

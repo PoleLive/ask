@@ -48,7 +48,27 @@ public class QuestionDetailPresenter implements QuestionDetailContract.Presenter
 
     @Override
     public void followQuestion(int questionId) {
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("entityType","1");
+        map.put("entityId",questionId+"");
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    view.changeFollowBn(true);
+                }
+            }
+        }).post(UrlContract.FOLLOW,map);
     }
 
     @Override
@@ -57,9 +77,60 @@ public class QuestionDetailPresenter implements QuestionDetailContract.Presenter
     }
 
     @Override
+    public void unFollowQuestion(int questionId) {
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("entityType","1");
+        map.put("entityId",questionId+"");
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    view.changeFollowBn(false);
+                }
+            }
+        }).post(UrlContract.UNFOLLOWER,map);
+    }
+
+    @Override
+    public void checkIsFollower(int questionId) {
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("entityType","1");
+        map.put("entityId",questionId+"");
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    view.changeFollowBn(true);
+                }
+            }
+        }).post(UrlContract.ISFOLLOWER,map);
+    }
+
+    @Override
     public void start() {
         int id = view.getActivity().getIntent().getIntExtra("questionId", 0);
         loadQuestion(id);
+        checkIsFollower(id);
     }
 
     public QuestionDetailPresenter(QuestionDetailContract.View view) {

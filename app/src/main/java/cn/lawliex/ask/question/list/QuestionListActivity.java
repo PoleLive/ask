@@ -1,6 +1,7 @@
 package cn.lawliex.ask.question.list;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,9 +18,11 @@ import android.view.MenuItem;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.login.LoginActivity;
+import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
 import cn.lawliex.ask.question.add.QuestionAddActivity;
 import cn.lawliex.ask.util.AskHelper;
 import rx.Subscriber;
@@ -43,6 +46,7 @@ public class QuestionListActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+        fab.setRippleColor(Color.RED);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -113,20 +117,23 @@ public class QuestionListActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.profile) {
+            Intent intent = new Intent(this, UserInfoDetailActivity.class);
+            //UserLocalDataSource userLocalDataSource = UserLocalDataSource.getInstance(this);
+            //intent.putExtra("userId",userLocalDataSource.getInt("id",0));
+            startActivity(intent);
+        } else if (id == R.id.collection) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.follow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.followee) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.about) {
 
         }
 

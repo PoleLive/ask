@@ -16,6 +16,7 @@
         android:orientation="horizontal"
         >
         <ImageView
+            android:id="@+id/answer_detail_img_head"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:background="@mipmap/head"

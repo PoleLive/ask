@@ -24,12 +24,13 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
 
     TextView titleTxt;
     TextView contentTxt;
-    TextView answerCountTxt;
+    TextView answerCountTxt1,answerCountTxt2;
     TextView visitCountTxt;
     ListView answerListView;
     Button followBn;
     Button answerBn;
     Question question;
+    boolean isFollower = false;
 
     @Override
     public void showErrorView(String errMsg) {
@@ -41,12 +42,28 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
         this.question = question;
         titleTxt.setText(question.getTitle());
         contentTxt.setText(question.getContent());
-
+        answerCountTxt1.setText(question.getCommentCount()+"");
+        answerCountTxt2.setText(question.getCommentCount()+"");
     }
 
     @Override
     public void showLoadingView(int progress) {
 
+    }
+
+    @Override
+    public void changeFollowBn(boolean follow) {
+        isFollower = follow;
+        if(isFollower){
+            followBn.setText("已关注");
+        }
+        else
+            followBn.setText("关注");
+    }
+
+    @Override
+    public boolean getFollowBnStatus() {
+        return isFollower;
     }
 
     @Override
@@ -68,6 +85,8 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
         followBn = (Button)view.findViewById(R.id.question_detail_bn_follow);
         contentTxt = (TextView) view.findViewById(R.id.question_detail_txt_content);
         titleTxt = (TextView)view.findViewById(R.id.question_detail_txt_title);
+        answerCountTxt1 = (TextView)view.findViewById(R.id.question_detail_txt_answer_count1);
+        answerCountTxt2 = (TextView)view.findViewById(R.id.question_detail_txt_answer_count2);
         initListener();
 
         return view;
@@ -98,6 +117,11 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
                 startActivity(intent);
                 break;
             case R.id.question_detail_bn_follow:
+                if(isFollower){
+                    presenter.unFollowQuestion(question.getId());
+                }else{
+                    presenter.followQuestion(question.getId());
+                }
                 break;
         }
     }

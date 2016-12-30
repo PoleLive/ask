@@ -14,6 +14,15 @@ public class Question {
     private Date createdDate;
     private int commentCount;
     private String name;
+    private int likeCount;
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
 
     public String getName() {
         return name;
