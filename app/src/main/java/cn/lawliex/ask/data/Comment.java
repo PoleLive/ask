@@ -16,6 +16,15 @@ public class Comment {
     private int status;
     private String author;
     private String questionTitle;
+    private int likeCount;
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
 
     public String getAuthor() {
         return author;

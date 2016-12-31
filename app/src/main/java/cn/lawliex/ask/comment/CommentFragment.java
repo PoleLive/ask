@@ -32,7 +32,7 @@ public class CommentFragment extends Fragment implements CommentContract.View {
     @Override
     public void showComments(List<Comment> commentList) {
         this.comments = commentList;
-        CommentListAdapter adapter = new CommentListAdapter(comments,getActivity());
+        CommentListAdapter adapter = new CommentListAdapter(comments,this);
         listView.setAdapter(adapter);
     }
 
@@ -67,12 +67,17 @@ public class CommentFragment extends Fragment implements CommentContract.View {
         sendBn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(editText.getText().toString().length() == 0)
+                    return;
                 presenter.addComment();
+                editText.setText("");
             }
         });
         return  view;
     }
-
+    public void update(){
+        presenter.start();
+    }
     @Override
     public void onStart() {
         super.onStart();

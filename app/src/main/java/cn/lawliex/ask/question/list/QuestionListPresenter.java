@@ -21,8 +21,12 @@ public class QuestionListPresenter implements QuestionListContract.Presenter {
     QuestionListContract.View questionListView;
 
     @Override
-    public void loadQuestionList() {
-        Map<String,String> map = AskHelper.getRequestMap(questionListView.getContext());
+    public void loadQuestionList(Map<String,String> map) {
+        String path = UrlContract.QUESTION_LIST;
+        doRequest(path,map);
+    }
+    public void doRequest(String path,Map<String,String> map){
+
         HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
             @Override
             public void onCompleted() {
@@ -47,12 +51,23 @@ public class QuestionListPresenter implements QuestionListContract.Presenter {
                     questionListView.showLoadSuccessView("加载完成");
                 }
             }
-        }).post(UrlContract.QUESTION_LIST,map );
+        }).post(path,map );
+    }
+    @Override
+    public void loadMyQuestions(int userId, Map<String,String> map) {
+        String path = UrlContract.MY_QUESTION_LIST;
+        map.put("userId",userId + "");
+        doRequest(path,map);
     }
 
     @Override
     public void start() {
-        loadQuestionList();
+        int userId = questionListView.getActivity().getIntent().getIntExtra("userId",0);
+        Map<String,String> map = AskHelper.getRequestMap(questionListView.getContext());
+        if(userId != 0)
+            loadMyQuestions(userId,map);
+        else
+            loadQuestionList(map);
     }
 
     public QuestionListPresenter(QuestionListContract.View questionListView) {

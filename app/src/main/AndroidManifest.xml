@@ -31,7 +31,8 @@
         <activity android:name=".answer.add.AnswerAddActivity" />
         <activity android:name=".answer.detail.AnswerDetailActivity" />
         <activity android:name=".profile.other.detail.UserInfoDetailActivity" />
-        <activity android:name=".comment.CommentActivity"></activity>
+        <activity android:name=".comment.CommentActivity" />
+        <activity android:name=".answer.list_plus.QandAListActivity"></activity>
     </application>
 
 </manifest>

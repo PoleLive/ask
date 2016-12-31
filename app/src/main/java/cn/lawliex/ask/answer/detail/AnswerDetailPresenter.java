@@ -53,7 +53,27 @@ public class AnswerDetailPresenter implements AnswerDetailContract.Presenter {
 
     @Override
     public void like(int commentId) {
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("entityType","2");
+        map.put("entityId",""+commentId);
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    loadAnswer();
+                }
+            }
+        }).post(UrlContract.LIKE_LIKE,map);
     }
 
     @Override

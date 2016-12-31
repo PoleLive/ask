@@ -1,6 +1,7 @@
 package cn.lawliex.ask.profile.other.detail;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,8 +23,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.UrlContract;
+import cn.lawliex.ask.answer.list_plus.QandAListActivity;
 import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.question.list.QuestionListActivity;
 import rx.Subscriber;
 
 /**
@@ -34,6 +38,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
     SelectableRoundedImageView headImg;
     TextView nameTxt, mottoTxt, questionCountTxt, answerCountTxt, followerCountTxt, followeeCountTxt, likeCount;
     Button  followBn, sendMsgBn;
+    LinearLayout questionLayout,answerLayout;
     UserInfo userInfo;
     @Override
     public void showUserInfo(UserInfo userInfo) {
@@ -85,9 +90,11 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
         likeCount = (TextView)view.findViewById(R.id.user_info_detail_txt_like_count);
         mottoTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_motto);
         followBn = (Button) view.findViewById(R.id.user_info_detail_txt_bn_follow_user);
+        answerLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_answer_layout);
+        questionLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_question_layout);
 
-
-
+        answerLayout.setOnClickListener(this);
+        questionLayout.setOnClickListener(this);
         followBn.setOnClickListener(this);
         sendMsgBn.setOnClickListener(this);
         return view;
@@ -106,6 +113,17 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.user_info_detail_answer_layout:
+                Intent intenta = new Intent(getActivity(), QandAListActivity.class);
+                intenta.putExtra("userId",userInfo.getId());
+                startActivity(intenta);
+                break;
+            case R.id.user_info_detail_question_layout:
+                Intent intent = new Intent(getActivity(), QuestionListActivity.class);
+
+                intent.putExtra("userId",userInfo.getId());
+                startActivity(intent);
+                break;
             case R.id.user_info_detail_bn_send_message:
 
                 break;

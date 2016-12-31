@@ -110,6 +110,7 @@ public class AnswerDetailFragment extends Fragment implements AnswerDetailContra
             case R.id.answer_detail_author:
             case R.id.answer_detail_moto:
                 Intent intent = new Intent(getActivity(), UserInfoDetailActivity.class);
+                intent.putExtra("userId",answer.getUserId());
                 startActivity(intent);
                 break;
             case R.id.answer_detail_layout_comment_count:

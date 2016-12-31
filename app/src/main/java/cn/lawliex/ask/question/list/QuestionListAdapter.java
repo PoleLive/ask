@@ -58,7 +58,7 @@ public class QuestionListAdapter extends BaseAdapter {
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.question_list_item, parent, false);
             holder.photo = (ImageView) convertView.findViewById(R.id.question_list_user_head);
-            holder.usernameTxt = (TextView) convertView.findViewById(R.id.question_list_user_id);
+            holder.usernameTxt = (TextView) convertView.findViewById(R.id.question_list_user_name);
             holder.titleTxt = (TextView) convertView.findViewById(R.id.question_list_title);
             holder.answerTxt = (TextView) convertView.findViewById(R.id.question_list_answer);
             holder.likeTxt = (TextView) convertView.findViewById(R.id.question_list_like);
@@ -78,6 +78,7 @@ public class QuestionListAdapter extends BaseAdapter {
         holder.likeTxt.setText(q.getLikeCount()+"");
         holder.likeTxt.setOnClickListener(getOnClickListener(holder.likeTxt,position));
         holder.likeStrTxt.setOnClickListener(getOnClickListener(holder.likeTxt,position));
+        holder.usernameTxt.setOnClickListener(getOnClickListener(holder.usernameTxt,position));
         holder.followQuestionTxt.setOnClickListener(getOnClickListener(holder.followQuestionTxt,position));
         holder.photo.setOnClickListener(getOnClickListener( holder.photo,position));
         return convertView;
@@ -113,6 +114,7 @@ public class QuestionListAdapter extends BaseAdapter {
                 String path = "";
                 switch (v.getId()){
                     case R.id.question_list_user_head:
+                    case R.id.question_list_user_name:
                         Intent intent = new Intent(context, UserInfoDetailActivity.class);
                         intent.putExtra("userId",datas.get(i).getUserId());
                         context.startActivity(intent);

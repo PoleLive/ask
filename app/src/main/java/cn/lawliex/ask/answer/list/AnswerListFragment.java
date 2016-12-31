@@ -33,7 +33,7 @@ public class AnswerListFragment extends Fragment implements AnswerListContract.V
     @Override
     public void showAnswerList(List<Answer> answerList) {
         this.answers = answerList;
-        AnswerListAdapter adapter = new AnswerListAdapter(answers,getActivity());
+        AnswerListAdapter adapter = new AnswerListAdapter(answers,this);
         answerListView.setAdapter(adapter);
     }
 
@@ -66,7 +66,10 @@ public class AnswerListFragment extends Fragment implements AnswerListContract.V
             }
         });
     }
-
+    @Override
+    public void update(){
+        presenter.start();
+    }
     @Override
     public void onStart() {
         super.onStart();

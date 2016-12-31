@@ -20,5 +20,7 @@ public class AnswerListContract {
         Activity getActivity();
         void showErrorMessage(String errMsg);
         void showAnswerList(List<Answer> answerList);
+        void update();
     }
+
 }

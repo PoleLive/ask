@@ -3,6 +3,7 @@ package cn.lawliex.ask.question.list;
 import android.content.Context;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.lawliex.ask.BasePresenter;
 import cn.lawliex.ask.BaseView;
@@ -15,7 +16,8 @@ import cn.lawliex.ask.data.Question;
 public interface QuestionListContract {
 
     interface Presenter extends BasePresenter{
-        void loadQuestionList();
+        void loadQuestionList(Map<String,String> map);
+        void loadMyQuestions(int userId,Map<String,String> map);
     }
     interface View extends BaseView<Presenter>{
         Context getContext();

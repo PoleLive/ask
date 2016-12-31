@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f3f3f3"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/q_and_a_user_head"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/head" />
+
+            <TextView
+                android:id="@+id/q_and_a_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="玉娇mm" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/q_and_a_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="问题1：为什么我这么晚还在敲代码？"
+                android:textColor="#000000"
+                android:textSize="18dp"
+
+                />
+
+            <TextView
+                android:id="@+id/q_and_a_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="亭有枇杷树，吾妻死之年所手植也，今已亭亭如盖。入夜伐之，为博小娘子一笑。小娘子一笑，恰似吾妻年少时。时至晚春，枇杷结果，香溢南北，四邻欢腾。庭深十丈，友邻汇聚，站无缝隙，宛若吾娶妻之日，深思至此，人皆喜笑颜开，唯吾独泪矣。小娘子为吾与吾妻"
+                android:textColor="#0f0f0f" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/q_and_a_like_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/q_and_a_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100" />
+
+                <TextView
+                    android:id="@+id/q_and_a_like_str"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="喜欢-" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/q_and_a_comment_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/q_and_a_comment_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="评论-" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/q_and_a_follow_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注问题" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
