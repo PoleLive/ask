@@ -16,6 +16,25 @@ public class Answer {
     private String content;
     private String author;
     private String questionTitle;
+    private int likeCount;
+    private int commentCount;
+
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(int likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public String getAuthor() {
         return author;

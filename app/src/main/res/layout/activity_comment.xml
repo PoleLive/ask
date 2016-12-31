@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_answer_detail"
+    android:id="@+id/activity_comment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.lawliex.ask.answer.detail.AnswerDetailActivity">
+
+    tools:context="cn.lawliex.ask.comment.CommentActivity">
     <fragment
-        android:id="@+id/answer_detail_fragment"
-        android:name="cn.lawliex.ask.answer.detail.AnswerDetailFragment"
+        android:id="@+id/comment_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:name="cn.lawliex.ask.comment.CommentFragment"
         />
 </RelativeLayout>

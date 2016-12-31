@@ -13,9 +13,14 @@ import cn.lawliex.ask.data.Answer;
 public class AnswerDetailContract {
     public interface Presenter extends BasePresenter{
         void loadAnswer();
+        void like(int commentId);
+        void collect(int commentId);
+        void comment(int commentId);
+
     }
     public interface View extends BaseView<Presenter>{
         void showAnswer(Answer answer);
-
+        void showErrorMessage(String errMsg);
+        void toCommentActivity(int id);
     }
 }

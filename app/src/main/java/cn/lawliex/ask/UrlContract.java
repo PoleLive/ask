@@ -28,4 +28,7 @@ public class UrlContract {
     //判断并改变状态
     public static final String ISFOLLOWERED = "follow/isfollowered";
     public static final String USREINFO = "user/info";
+    public static final String COMMENT_ADD = "comment/add";
+    public static final String COMMENT_DETAIL = "comment/detail";
+    public static final String COMMETN_LIST = "comment/list";
 }

@@ -1,10 +1,13 @@
 package cn.lawliex.ask.answer.detail;
 
+import android.content.Intent;
+
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.Map;
 
 import cn.lawliex.ask.UrlContract;
+import cn.lawliex.ask.comment.CommentActivity;
 import cn.lawliex.ask.data.Answer;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.util.AskHelper;
@@ -46,6 +49,22 @@ public class AnswerDetailPresenter implements AnswerDetailContract.Presenter {
                 }
             }
         }).post(UrlContract.ANSWER_DETAIL, map);
+    }
+
+    @Override
+    public void like(int commentId) {
+
+    }
+
+    @Override
+    public void collect(int commentId) {
+
+    }
+
+    @Override
+    public void comment(int commentId) {
+
+
     }
 
     @Override

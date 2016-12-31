@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="0dp"
+    >
     <TextView
         android:id="@+id/answer_detail_questionTitle"
         android:text="什么是一个号的回答"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:layout_margin="5dp"
+
         />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         >
         <ImageView
@@ -25,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical"
             >
             <TextView
@@ -54,17 +62,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@mipmap/head"
-            />
-        <TextView
-            android:text="500"
+        <LinearLayout
+            android:id="@+id/answer_detail_like_count_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
+
+            >
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@mipmap/like"
+                />
+            <TextView
+                android:id="@+id/answer_detail_like_count"
+                android:text="500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,13 +93,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical"
+            android:id="@+id/answer_detail_collection"
             >
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@mipmap/head"
+                android:background="@drawable/ic_collections_black_24dp"
+                android:layout_gravity="center"
                 />
             <TextView
+                android:id="@+id/answer_detail_txt_collection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -92,6 +113,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/answer_detail_layout_comment_count"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="20dp"
@@ -100,9 +122,11 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:background="@mipmap/head"
+                android:layout_gravity="center"
+                android:background="@mipmap/comment"
                 />
             <TextView
+                android:id="@+id/answer_detail_txt_comment_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="28"
