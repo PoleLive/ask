@@ -1,5 +1,7 @@
 package cn.lawliex.ask.profile.other.detail;
 
+import android.widget.ImageView;
+
 import cn.lawliex.ask.BasePresenter;
 import cn.lawliex.ask.BaseView;
 import cn.lawliex.ask.data.Message;
@@ -21,6 +23,6 @@ public class UserInfoDetailContract {
         void showUserInfo(UserInfo userInfo);
         void showErrorMessage(String errMsg);
         void changeFollowBnState(boolean follow);
-
+        void showHeadImage(ImageView imageView);
     }
 }

@@ -8,6 +8,8 @@ import cn.lawliex.ask.ApplicationContract;
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.BaseResponse;
 import cn.lawliex.ask.data.User;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -61,6 +63,12 @@ public class HttpRequests {
             }
         };
 
+    }
+    public void post(RequestBody description, MultipartBody.Part body, Map<String,String>map){
+        observable = httpService.upload(description, body,map);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
     public JSONObject post(String path, Map<String, String> map) {
         response = null;

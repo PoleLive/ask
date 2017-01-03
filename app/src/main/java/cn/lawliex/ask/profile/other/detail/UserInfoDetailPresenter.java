@@ -1,8 +1,17 @@
 package cn.lawliex.ask.profile.other.detail;
 
-import com.alibaba.fastjson.JSONObject;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
+import com.yancy.gallerypick.config.GalleryConfig;
+import com.yancy.gallerypick.inter.IHandlerCallBack;
+
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cn.lawliex.ask.UrlContract;
@@ -11,6 +20,10 @@ import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.profile.other.list.UserInfoListContract;
 import cn.lawliex.ask.util.AskHelper;
+import cn.lawliex.ask.util.GlideImageLoader;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import rx.Subscriber;
 
 /**
@@ -19,10 +32,13 @@ import rx.Subscriber;
 
 public class UserInfoDetailPresenter implements UserInfoDetailContract.Presenter {
     UserInfoDetailContract.View view;
+    public static final String TAG = "UserInfo";
+
 
     public UserInfoDetailPresenter(UserInfoDetailContract.View view) {
         this.view = view;
         view.setPresenter(this);
+
         start();
 
     }

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 import java.util.Map;
@@ -80,7 +81,9 @@ public class QuestionListAdapter extends BaseAdapter {
         holder.likeStrTxt.setOnClickListener(getOnClickListener(holder.likeTxt,position));
         holder.usernameTxt.setOnClickListener(getOnClickListener(holder.usernameTxt,position));
         holder.followQuestionTxt.setOnClickListener(getOnClickListener(holder.followQuestionTxt,position));
+
         holder.photo.setOnClickListener(getOnClickListener( holder.photo,position));
+        Glide.with(context).load(UrlContract.SERVER_ADDRESS + "/" +q.getHeadUrl()).into(holder.photo);
         return convertView;
     }
     void checkIsFollower(final TextView txt, int i){

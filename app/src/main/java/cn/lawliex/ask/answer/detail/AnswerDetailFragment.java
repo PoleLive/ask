@@ -14,7 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.comment.CommentActivity;
 import cn.lawliex.ask.data.Answer;
 import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
@@ -43,7 +46,7 @@ public class AnswerDetailFragment extends Fragment implements AnswerDetailContra
         titleTxt.setText(answer.getQuestionTitle());
         likeCountTxt.setText(""+answer.getLikeCount());
         commentCountTxt.setText(""+answer.getCommentCount());
-
+        Glide.with(getActivity()).load(UrlContract.SERVER_ADDRESS +"/"+answer.getHeadUrl()).into(headImg);
     }
 
     @Override
@@ -83,6 +86,7 @@ public class AnswerDetailFragment extends Fragment implements AnswerDetailContra
         likeLayout = (LinearLayout)view.findViewById(R.id.answer_detail_like_count_layout);
         commentLayout = (LinearLayout) view.findViewById(R.id.answer_detail_layout_comment_count);
         collectionLayout = (LinearLayout)view.findViewById(R.id.answer_detail_collection);
+
         initLisener();
 
         return view;

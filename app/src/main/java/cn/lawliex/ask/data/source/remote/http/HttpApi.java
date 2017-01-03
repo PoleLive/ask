@@ -8,10 +8,14 @@ import java.util.Map;
 import cn.lawliex.ask.data.BaseResponse;
 import cn.lawliex.ask.data.LoginResponse;
 import cn.lawliex.ask.data.User;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import rx.Observable;
@@ -40,4 +44,9 @@ public interface HttpApi {
 
     @GET("{path}")
     Observable<JSONObject> get(@Path("path") String path, @QueryMap Map<String,String> map);
+
+    @Multipart
+    @POST("upload")
+    Observable<JSONObject> upload(@Part("file") RequestBody description,
+                                  @Part MultipartBody.Part file, @QueryMap Map<String,String> map);
 }

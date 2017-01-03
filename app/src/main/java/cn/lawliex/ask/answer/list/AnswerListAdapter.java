@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,7 @@ public class AnswerListAdapter extends BaseAdapter {
         viewHolder.commentCountTxt.setOnClickListener(getOnClickListener(position));
         viewHolder.likeCountTxt.setOnClickListener(getOnClickListener(position));
         viewHolder.dateTxt.setText(AskHelper.format(answer.getCreatedDate()));
+        Glide.with(context).load(UrlContract.SERVER_ADDRESS +"/" + answer.getHeadUrl()).into(viewHolder.headImg);
         return convertView;
     }
     public View.OnClickListener getOnClickListener(final int i){
