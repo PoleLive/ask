@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/comment_list_item_photo"
                 android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:background="@mipmap/head"
                 android:layout_gravity="center"
 

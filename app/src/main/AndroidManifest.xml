@@ -3,8 +3,8 @@
     package="cn.lawliex.ask">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".AskApp"
@@ -34,7 +34,8 @@
         <activity android:name=".answer.detail.AnswerDetailActivity" />
         <activity android:name=".profile.other.detail.UserInfoDetailActivity" />
         <activity android:name=".comment.CommentActivity" />
-        <activity android:name=".answer.list_plus.QandAListActivity"></activity>
+        <activity android:name=".answer.list_plus.QandAListActivity" />
+        <activity android:name=".followers.FollowersActivity"></activity>
     </application>
 
 </manifest>

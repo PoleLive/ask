@@ -8,9 +8,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.Answer;
 
 /**
@@ -70,7 +73,7 @@ public class QandAListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-
+        Glide.with(fragment.getActivity()).load(UrlContract.USER_HEAD_URL + datas.get(position).getHeadUrl()).into(holder.photo );
         return convertView;
     }
 

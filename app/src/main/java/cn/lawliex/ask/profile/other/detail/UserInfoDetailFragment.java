@@ -38,6 +38,7 @@ import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.answer.list_plus.QandAListActivity;
 import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.followers.FollowersActivity;
 import cn.lawliex.ask.question.list.QuestionListActivity;
 import cn.lawliex.ask.util.AskHelper;
 import cn.lawliex.ask.util.GlideImageLoader;
@@ -59,7 +60,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
     TextView nameTxt, mottoTxt, questionCountTxt, answerCountTxt, followerCountTxt, followeeCountTxt, likeCount;
     Button  followBn, sendMsgBn;
     GalleryConfig galleryConfig;
-    LinearLayout questionLayout,answerLayout;
+    LinearLayout questionLayout,answerLayout, followingLayout, followersLayout;
     UserInfo userInfo;
     @Override
     public void showUserInfo(UserInfo userInfo) {
@@ -114,7 +115,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.user_info_detail_fragment,container, false);
         sendMsgBn = (Button)view.findViewById(R.id.user_info_detail_bn_send_message) ;
         nameTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_name);
@@ -128,6 +129,9 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
         answerLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_answer_layout);
         questionLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_question_layout);
         headImg = (SelectableRoundedImageView)view.findViewById(R.id.image);
+        followersLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_followers_layout);
+        followingLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_following_layout);
+        followersLayout.setOnClickListener(this);
 
         headImg.setOnClickListener(this);
         answerLayout.setOnClickListener(this);
@@ -167,6 +171,11 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
             case R.id.user_info_detail_txt_bn_follow_user:
 
                 presenter.follow(userInfo.getId());
+                break;
+            case R.id.user_info_detail_followers_layout:
+                Intent intentb = new Intent(getActivity(), FollowersActivity.class);
+                intentb.putExtra("userId",userInfo.getId());
+                startActivity(intentb);
                 break;
             case R.id.image:
                 if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
