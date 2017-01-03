@@ -19,7 +19,7 @@ public interface LoginContract {
     interface Presenter extends BasePresenter{
         void login(@NonNull String username,@NonNull String password);
         void register(@NonNull String username, @NonNull String password);
-
+        void logout();
     }
     interface View extends BaseView<Presenter>{
         String getUsername();

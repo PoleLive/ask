@@ -67,6 +67,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                             String ticket = result.getTicket();
                             loginView.saveTicket(ticket);
                             User user = result.getData();
+
                             loginView.saveUser(user);
                             loginView.toMainAct();
                         }
@@ -102,5 +103,10 @@ public class LoginPresenter implements LoginContract.Presenter {
                     }
                 })
                 .post(UrlContract.REGISTER_PATH,map);
+    }
+
+    @Override
+    public void logout() {
+
     }
 }

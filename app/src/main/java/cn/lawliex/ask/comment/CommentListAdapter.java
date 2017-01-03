@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,8 +73,11 @@ public class CommentListAdapter extends BaseAdapter {
         else
             viewHolder = (ViewHolder) convertView.getTag();
         Comment c = datas.get(position);
+
         viewHolder.nameTxt.setText(c.getAuthor());
         viewHolder.contentTxt.setText(c.getContent());
+        Glide.with(context).load(UrlContract.SERVER_ADDRESS + "/" + c.getHeadUrl()).into(viewHolder.photo);
+
         viewHolder.likeTxt.setText(c.getLikeCount() + "");
         viewHolder.timeTxt.setText(AskHelper.format(c.getCreatedDate()));
         viewHolder.likeTxt.setOnClickListener(getOnClickListener(viewHolder.likeTxt,position));
