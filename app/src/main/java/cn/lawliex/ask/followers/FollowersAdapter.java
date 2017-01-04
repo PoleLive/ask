@@ -1,6 +1,7 @@
 package cn.lawliex.ask.followers;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -20,6 +22,7 @@ import cn.lawliex.ask.R;
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.User;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
 import cn.lawliex.ask.profile.other.detail.UserInfoDetailContract;
 import cn.lawliex.ask.util.AskHelper;
 import rx.Subscriber;
@@ -63,6 +66,7 @@ public class FollowersAdapter extends BaseAdapter {
             holder.followBn = (Button)convertView.findViewById(R.id.followers_follow);
             holder.mottoTxt = (TextView)convertView.findViewById(R.id.followers_motto);
             holder.nameTxt  = (TextView)convertView.findViewById(R.id.followers_name);
+            holder.outLayout = (LinearLayout)convertView.findViewById(R.id.followers_item_out_layout);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder)convertView.getTag();
@@ -73,6 +77,7 @@ public class FollowersAdapter extends BaseAdapter {
         holder.nameTxt.setText(user.getName());
         holder.mottoTxt.setText("不知所云");
         holder.followBn.setOnClickListener(getOnClickListener(position));
+        holder.outLayout.setOnClickListener(getOnClickListener(position));
         return convertView;
     }
     void checkFollow(final Button bn, int i){
@@ -132,6 +137,12 @@ public class FollowersAdapter extends BaseAdapter {
                         int userId = datas.get(i).getId();
                         follow(userId);
                         break;
+                    case R.id.followers_item_out_layout:
+                        int id = datas.get(i).getId();
+                        Intent intent = new Intent(fragment.getActivity(), UserInfoDetailActivity.class);
+                        intent.putExtra("userId",id );
+                        fragment.getActivity().startActivity(intent);
+                        break;
                 }
             }
         };
@@ -143,5 +154,6 @@ public class FollowersAdapter extends BaseAdapter {
         TextView mottoTxt;
         Button followBn;
         ImageView headImg;
+        LinearLayout outLayout;
     }
 }

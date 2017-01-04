@@ -31,6 +31,12 @@ public class FollowersFragment extends Fragment implements FollowersContract.Vie
         this.users = users;
         FollowersAdapter adapter = new FollowersAdapter(this,users);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showErrorMessage("xxxx");
+            }
+        });
     }
 
     @Override
@@ -62,6 +68,7 @@ public class FollowersFragment extends Fragment implements FollowersContract.Vie
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showErrorMessage("hahah");
                 Intent intent = new Intent(getActivity(), UserInfoDetailActivity.class);
                 intent.putExtra("userId",users.get(position).getId());
                 startActivity(intent);
