@@ -35,7 +35,10 @@
         <activity android:name=".profile.other.detail.UserInfoDetailActivity" />
         <activity android:name=".comment.CommentActivity" />
         <activity android:name=".answer.list_plus.QandAListActivity" />
-        <activity android:name=".followers.FollowersActivity"></activity>
+        <activity android:name=".followers.FollowersActivity" />
+        <activity android:name=".message.list.MessageListActivity" />
+        <activity android:name=".message.add.MessageAddActivity" />
+        <activity android:name=".message.detail.MessageDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_message_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.lawliex.ask.message.detail.MessageDetailActivity">
+    <ListView
+        android:id="@+id/msg_detail_listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="#00000000"
+        android:dividerHeight="0dip"
+
+    >
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#f3f3f3"
+        >
+        <EditText
+            android:id="@+id/msg_detail_edit_input"
+            android:layout_width="0dp"
+            android:background="#ffffff"
+            android:padding="3dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:hint="请输入发送内容"
+            />
+        <Button
+            android:id="@+id/msg_detail_bn_send"
+            android:text="发送"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+    </LinearLayout>
+</LinearLayout>

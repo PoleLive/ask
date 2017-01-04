@@ -39,6 +39,8 @@ import cn.lawliex.ask.answer.list_plus.QandAListActivity;
 import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.followers.FollowersActivity;
+import cn.lawliex.ask.message.add.MessageAddActivity;
+import cn.lawliex.ask.message.detail.MessageDetailActivity;
 import cn.lawliex.ask.question.list.QuestionListActivity;
 import cn.lawliex.ask.util.AskHelper;
 import cn.lawliex.ask.util.GlideImageLoader;
@@ -133,6 +135,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
         followingLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_following_layout);
         followersLayout.setOnClickListener(this);
 
+        sendMsgBn.setOnClickListener(this);
         headImg.setOnClickListener(this);
         answerLayout.setOnClickListener(this);
         questionLayout.setOnClickListener(this);
@@ -166,7 +169,9 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 startActivity(intent);
                 break;
             case R.id.user_info_detail_bn_send_message:
-
+                Intent intent1 = new Intent(getActivity(), MessageDetailActivity.class);
+                intent1.putExtra("toId",userInfo.getId());
+                startActivity(intent1);
                 break;
             case R.id.user_info_detail_txt_bn_follow_user:
 
