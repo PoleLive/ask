@@ -38,7 +38,8 @@
         <activity android:name=".followers.FollowersActivity" />
         <activity android:name=".message.list.MessageListActivity" />
         <activity android:name=".message.add.MessageAddActivity" />
-        <activity android:name=".message.detail.MessageDetailActivity"></activity>
+        <activity android:name=".message.detail.MessageDetailActivity" />
+        <activity android:name=".following.FollowingActivity"></activity>
     </application>
 
 </manifest>

@@ -25,6 +25,7 @@ import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.following.FollowingActivity;
 import cn.lawliex.ask.login.LoginActivity;
 import cn.lawliex.ask.message.list.MessageListActivity;
 import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
@@ -140,6 +141,9 @@ public class QuestionListActivity extends AppCompatActivity
             Intent intent = new Intent(this, MessageListActivity.class);
             startActivity(intent);
         } else if (id == R.id.followee) {
+            Intent intent = new Intent(this, FollowingActivity.class);
+            intent.putExtra("userId",UserLocalDataSource.getInstance(this).getInt("id",0));
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
