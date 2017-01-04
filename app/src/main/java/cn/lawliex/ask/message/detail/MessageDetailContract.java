@@ -14,6 +14,7 @@ public class MessageDetailContract {
     public interface Presenter extends BasePresenter {
         void loadMessageDetail();
         void sendMessage();
+        void onDestroy();
     }
     public interface View extends BaseView<Presenter> {
         void showMessageDetail(List<Message> messageList);

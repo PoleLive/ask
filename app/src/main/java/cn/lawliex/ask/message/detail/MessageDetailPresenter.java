@@ -21,24 +21,29 @@ import rx.Subscriber;
 
 public class MessageDetailPresenter implements MessageDetailContract.Presenter {
     MessageDetailContract.View view;
-
+    Thread checkingNewMessage;
+    public Boolean isAlive = false;
     public MessageDetailPresenter(MessageDetailContract.View view) {
         this.view = view;
         view.setPresenter(this);
         start();
-        new Thread(new Runnable() {
+        checkingNewMessage=new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true){
+                synchronized(isAlive) {
+                    isAlive = true;
+                }
+                while(isAlive){
                     try {
                         Thread.sleep(5000);
                         loadMessageDetail();
-                    }catch (Exception e){
+                    }catch (InterruptedException e){
                         e.getMessage();
                     }
                 }
             }
-        }).start();
+        });
+        checkingNewMessage.start();
     }
 
 
@@ -99,6 +104,14 @@ public class MessageDetailPresenter implements MessageDetailContract.Presenter {
                 }
             }
         }).post(UrlContract.MESSAGE_ADD,map);
+    }
+
+    @Override
+    public void onDestroy() {
+        synchronized(isAlive){
+            isAlive = false;
+        }
+
     }
 
     @Override

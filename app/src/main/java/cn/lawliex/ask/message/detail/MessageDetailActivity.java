@@ -66,7 +66,13 @@ public class MessageDetailActivity extends AppCompatActivity implements MessageD
     public void setPresenter(MessageDetailContract.Presenter presenter) {
         this.presenter = presenter;
     }
+    @Override
+    public void onPause(){
+        super.onPause();
 
+        presenter.onDestroy();
+
+    }
     @Override
     public Activity getActivity() {
         return this;
