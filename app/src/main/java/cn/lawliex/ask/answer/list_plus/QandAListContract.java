@@ -1,5 +1,7 @@
 package cn.lawliex.ask.answer.list_plus;
 
+import android.app.Activity;
+
 import java.util.List;
 
 import cn.lawliex.ask.BasePresenter;
@@ -18,5 +20,7 @@ public interface QandAListContract {
     interface View extends BaseView<Presenter>{
         void update();
         void showAnswers(List<Answer> answerList);
+        void setAct(Activity act);
+        Activity getAct();
     }
 }

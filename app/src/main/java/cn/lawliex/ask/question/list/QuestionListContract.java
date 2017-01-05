@@ -1,5 +1,6 @@
 package cn.lawliex.ask.question.list;
 
+import android.app.Activity;
 import android.content.Context;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public interface QuestionListContract {
         void showLoadingView(int progress);
         void toDetailAct(int id);
         void setListDatas(List<Question> questions);
+        void setAct(Activity act);
+        Activity getAct();
 
     }
 }

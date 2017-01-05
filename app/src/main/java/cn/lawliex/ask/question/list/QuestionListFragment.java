@@ -1,5 +1,6 @@
 package cn.lawliex.ask.question.list;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ public class QuestionListFragment extends Fragment implements QuestionListContra
     ListView listView;
     QuestionListContract.Presenter presenter;
     List<Question> datas;
+    Activity activity;
     public QuestionListFragment() {
         super();
     }
@@ -90,7 +92,7 @@ public class QuestionListFragment extends Fragment implements QuestionListContra
 
     @Override
     public void toDetailAct(int id) {
-        Intent intent = new Intent(getActivity(), QuestionDetailActivity.class);
+        Intent intent = new Intent(getAct(), QuestionDetailActivity.class);
         intent.putExtra("questionId",id);
         startActivity(intent);
     }
@@ -98,8 +100,20 @@ public class QuestionListFragment extends Fragment implements QuestionListContra
     @Override
     public void setListDatas(List<Question> questions) {
         datas = questions;
-        QuestionListAdapter adapter = new QuestionListAdapter(getActivity(),datas);
+        QuestionListAdapter adapter = new QuestionListAdapter(getAct(),datas);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setAct(Activity act) {
+        this.activity = act;
+    }
+
+    @Override
+    public Activity getAct() {
+        if(getActivity() != null)
+            return  getActivity();
+        return activity;
     }
 
     @Override
@@ -109,6 +123,8 @@ public class QuestionListFragment extends Fragment implements QuestionListContra
 
     @Override
     public Context getContext() {
-        return getActivity();
+        if(getActivity() != null)
+            return  getActivity();
+        return getAct();
     }
 }

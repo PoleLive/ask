@@ -62,6 +62,15 @@ public class AnswerDetailFragment extends Fragment implements AnswerDetailContra
     }
 
     @Override
+    public void changCollectionTxt(boolean collected) {
+        if(collected){
+            collectionTxt.setText("已收藏");
+        }else{
+            collectionTxt.setText("收藏");
+        }
+    }
+
+    @Override
     public void setPresenter(AnswerDetailContract.Presenter presenter) {
         this.presenter = presenter;
     }
@@ -124,7 +133,7 @@ public class AnswerDetailFragment extends Fragment implements AnswerDetailContra
                 presenter.like(answer.getId());
                 break;
             case R.id.answer_detail_collection:
-
+                presenter.collect(answer.getId());
                 break;
         }
     }

@@ -84,6 +84,10 @@ public class FollowUserFragment extends Fragment implements FollowUserContract.V
         });
         return view;
     }
+    @Override
+    public void onPause(){
+        super.onPause();
+    }
 
     @Override
     public void onStart() {

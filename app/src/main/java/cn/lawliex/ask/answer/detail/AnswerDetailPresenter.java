@@ -78,7 +78,29 @@ public class AnswerDetailPresenter implements AnswerDetailContract.Presenter {
 
     @Override
     public void collect(int commentId) {
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("entityType","2");
+        map.put("entityId",commentId + "");
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
 
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    view.changCollectionTxt(false);
+                }else if(jsonObject.getInteger("code") == 1){
+                    view.changCollectionTxt(true);
+                }
+            }
+        }).post(UrlContract.ISFOLLOWERED,map);
     }
 
     @Override
@@ -88,7 +110,33 @@ public class AnswerDetailPresenter implements AnswerDetailContract.Presenter {
     }
 
     @Override
+    public void checkCollected() {
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("entityType","2");
+        map.put("entityId",view.getActivity().getIntent().getIntExtra("answerId",0) + "");
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    view.changCollectionTxt(true);
+                }
+            }
+        }).post(UrlContract.ISFOLLOWER,map);
+    }
+
+    @Override
     public void start() {
         loadAnswer();
+        checkCollected();
     }
 }

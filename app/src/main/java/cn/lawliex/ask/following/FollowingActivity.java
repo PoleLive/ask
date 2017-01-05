@@ -5,29 +5,92 @@ import android.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.answer.list_plus.QandAListContract;
+import cn.lawliex.ask.answer.list_plus.QandAListFragment;
+import cn.lawliex.ask.following.collection.FollowAnswerPresenter;
+import cn.lawliex.ask.following.question.FollowQuestionPresenter;
 import cn.lawliex.ask.following.user.FollowUserContract;
 import cn.lawliex.ask.following.user.FollowUserFragment;
 import cn.lawliex.ask.following.user.FollowUserPresenter;
+import cn.lawliex.ask.question.list.QuestionListContract;
 import cn.lawliex.ask.question.list.QuestionListFragment;
 
-public class FollowingActivity extends Activity {
-
+public class FollowingActivity extends Activity implements View.OnClickListener{
+    TextView userTxt;
+    TextView questionTxt;
+    TextView collectionTxt;
+    FragmentTransaction ft;
+    FollowUserFragment userFragment;
+    QuestionListFragment questionFragment;
+    QandAListFragment answerFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_following);
-        List<Fragment> fragments = new ArrayList<>();
-        FollowUserFragment fragment = new FollowUserFragment();
-        fragment.setActivity(this);
+        userTxt = (TextView)findViewById(R.id.following_user_txt);
+        questionTxt = (TextView)findViewById(R.id.following_question_txt);
+        collectionTxt = (TextView)findViewById(R.id.following_answer_txt);
+        userTxt.setOnClickListener(this);
+        questionTxt.setOnClickListener(this);
+        collectionTxt.setOnClickListener(this);
 
-        FollowUserContract.Presenter presenter = new FollowUserPresenter(fragment);
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.following_fragment, fragment).commit();
+        int selection = getIntent().getIntExtra("selection",0);
+        ft = getFragmentManager().beginTransaction();
+        switch (selection){
+            case 0:case 1:
+                userFragment = new FollowUserFragment();
+                userFragment.setActivity(this);
+                FollowUserContract.Presenter presenter2 = new FollowUserPresenter(userFragment);
+                ft.replace(R.id.following_fragment, userFragment).commit();
+                break;
+            case 2:
+                questionFragment = new QuestionListFragment();
+                questionFragment.setAct(this);
+                QuestionListContract.Presenter presenter1 =new FollowQuestionPresenter(questionFragment);
+                presenter1.start();
+                ft.replace(R.id.following_fragment, questionFragment).commit();
+                break;
+            case 3:
+                answerFragment = new QandAListFragment();
+                answerFragment.setAct(this);
+                QandAListContract.Presenter presenter3 = new FollowAnswerPresenter(answerFragment);
+                ft.replace(R.id.following_fragment, answerFragment).commit();
+                break;
+        }
+    }
 
+    @Override
+    public void onClick(View v) {
+        ft = getFragmentManager().beginTransaction();
+        switch (v.getId()){
+            case R.id.following_user_txt:
+                userFragment = new FollowUserFragment();
+                userFragment.setActivity(this);
+                FollowUserContract.Presenter presenter2 = new FollowUserPresenter(userFragment);
+                ft.replace(R.id.following_fragment, userFragment).commit();
+                break;
+            case R.id.following_question_txt:
+                questionFragment = new QuestionListFragment();
+                questionFragment.setAct(this);
+                QuestionListContract.Presenter presenter1 =new FollowQuestionPresenter(questionFragment);
+                presenter1.start();
+                ft.replace(R.id.following_fragment, questionFragment).commit();
+                break;
+            case R.id.following_answer_txt:
+                answerFragment = new QandAListFragment();
+                answerFragment.setAct(this);
+                QandAListContract.Presenter presenter3 = new FollowAnswerPresenter(answerFragment);
+                ft.replace(R.id.following_fragment, answerFragment).commit();
+                break;
+        }
     }
 }

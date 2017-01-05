@@ -1,4 +1,4 @@
-package cn.lawliex.ask.question.list;
+package cn.lawliex.ask.following.question;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -10,6 +10,7 @@ import java.util.Map;
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.Question;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.question.list.QuestionListContract;
 import cn.lawliex.ask.util.AskHelper;
 import rx.Subscriber;
 
@@ -17,12 +18,12 @@ import rx.Subscriber;
  * Created by Terence on 2016/12/28.
  */
 
-public class QuestionListPresenter implements QuestionListContract.Presenter {
+public class FollowQuestionPresenter implements QuestionListContract.Presenter {
     QuestionListContract.View questionListView;
 
     @Override
     public void loadQuestionList(Map<String,String> map) {
-        String path = UrlContract.QUESTION_LIST;
+        String path = UrlContract.FOLLOW_QUESTION;
         doRequest(path,map);
     }
     public void doRequest(String path,Map<String,String> map){
@@ -41,7 +42,7 @@ public class QuestionListPresenter implements QuestionListContract.Presenter {
             @Override
             public void onNext(JSONObject jsonObject) {
                 if(jsonObject.getInteger("code") == 0){
-                    JSONArray array = jsonObject.getJSONArray("questions");
+                    JSONArray array = jsonObject.getJSONArray("datas");
                     List<Question> list = new ArrayList<>();
                     for(int i = 0; i < array.size();i++){
                         Question question = array.getJSONObject(i).toJavaObject(Question.class);
@@ -55,22 +56,20 @@ public class QuestionListPresenter implements QuestionListContract.Presenter {
     }
     @Override
     public void loadMyQuestions(int userId, Map<String,String> map) {
-        String path = UrlContract.MY_QUESTION_LIST;
+        String path = UrlContract.FOLLOW_QUESTION;
         map.put("userId",userId + "");
         doRequest(path,map);
     }
 
     @Override
     public void start() {
-        int userId = questionListView.getActivity().getIntent().getIntExtra("userId",0);
-        Map<String,String> map = AskHelper.getRequestMap(questionListView.getContext());
+        int userId = questionListView.getAct().getIntent().getIntExtra("userId",0);
+        Map<String,String> map = AskHelper.getRequestMap(questionListView.getAct());
         if(userId != 0)
             loadMyQuestions(userId,map);
-        else
-            loadQuestionList(map);
     }
 
-    public QuestionListPresenter(QuestionListContract.View questionListView) {
+    public FollowQuestionPresenter(QuestionListContract.View questionListView) {
         this.questionListView = questionListView;
         questionListView.setPresenter(this);
         start();

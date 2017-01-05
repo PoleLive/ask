@@ -39,6 +39,7 @@ import cn.lawliex.ask.answer.list_plus.QandAListActivity;
 import cn.lawliex.ask.data.UserInfo;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.followers.FollowersActivity;
+import cn.lawliex.ask.following.FollowingActivity;
 import cn.lawliex.ask.message.add.MessageAddActivity;
 import cn.lawliex.ask.message.detail.MessageDetailActivity;
 import cn.lawliex.ask.question.list.QuestionListActivity;
@@ -141,6 +142,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
         questionLayout.setOnClickListener(this);
         followBn.setOnClickListener(this);
         sendMsgBn.setOnClickListener(this);
+        followingLayout.setOnClickListener(this);
         return view;
     }
 
@@ -157,6 +159,11 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.user_info_detail_following_layout:
+                Intent followingIntent = new Intent(getActivity(), FollowingActivity.class);
+                followingIntent.putExtra("userId",userInfo.getId());
+                startActivity(followingIntent);
+                break;
             case R.id.user_info_detail_answer_layout:
                 Intent intenta = new Intent(getActivity(), QandAListActivity.class);
                 intenta.putExtra("userId",userInfo.getId());

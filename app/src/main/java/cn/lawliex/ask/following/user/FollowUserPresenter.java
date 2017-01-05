@@ -57,7 +57,7 @@ public class FollowUserPresenter implements FollowUserContract.Presenter {
                 else
                     view.showErrorMessage("error");
             }
-        }).post(UrlContract.FOLLOWERS,map);
+        }).post(UrlContract.FOLLOWEES,map);
     }
 
     @Override

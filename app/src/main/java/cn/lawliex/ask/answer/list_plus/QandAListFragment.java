@@ -1,5 +1,6 @@
 package cn.lawliex.ask.answer.list_plus;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class QandAListFragment extends Fragment implements QandAListContract.Vie
     QandAListContract.Presenter presenter;
     ListView listView;
     List<Answer> answers;
+    Activity activity;
 
     @Override
     public void update() {
@@ -35,6 +37,18 @@ public class QandAListFragment extends Fragment implements QandAListContract.Vie
         answers = answerList;
         QandAListAdapter adapter = new QandAListAdapter(this,answers);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setAct(Activity act) {
+        this.activity = act;
+    }
+
+    @Override
+    public Activity getAct() {
+        if(getActivity() != null)
+            return getActivity();
+        return activity;
     }
 
     @Override

@@ -16,11 +16,12 @@ public class AnswerDetailContract {
         void like(int commentId);
         void collect(int commentId);
         void comment(int commentId);
-
+        void checkCollected();
     }
     public interface View extends BaseView<Presenter>{
         void showAnswer(Answer answer);
         void showErrorMessage(String errMsg);
         void toCommentActivity(int id);
+        void changCollectionTxt(boolean collected);
     }
 }

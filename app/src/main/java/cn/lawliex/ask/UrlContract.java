@@ -36,5 +36,8 @@ public class UrlContract {
     public static final String Q_AND_A_USER_LIST = "answer/ulist";
     public static final String USER_HEAD_URL = SERVER_ADDRESS + "/";
     public static final String FOLLOWERS = "follow/followers";
+    public static final String FOLLOWEES = "follow/followees";
+    public static final String FOLLOW_QUESTION = "follow/followquestion";
+    public static final String FOLLOW_ANSWER = "follow/answer";
 
 }
