@@ -27,9 +27,9 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="分享" />
             <item
-                android:id="@+id/about"
+                android:id="@+id/question_list_settings"
                 android:icon="@drawable/ic_menu_send"
-                android:title="关于" />
+                android:title="设置" />
         </menu>
     </item>
 
