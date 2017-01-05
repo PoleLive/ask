@@ -23,7 +23,20 @@ public class MessageListPresenter implements MessageListContract.Presenter {
     public MessageListPresenter(MessageListContract.View view) {
         this.view = view;
         view.setPresenter(this);
-        start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                        Thread.sleep(3000);
+                        loadMessages();
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
+                }
+            }
+        }).start();
+
     }
 
     @Override

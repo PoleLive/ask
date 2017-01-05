@@ -80,5 +80,6 @@ public class MessageListFragment extends Fragment implements MessageListContract
     @Override
     public void onStart() {
         super.onStart();
+        presenter.start();
     }
 }

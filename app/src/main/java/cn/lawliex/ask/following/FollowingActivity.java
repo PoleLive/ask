@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,7 +25,7 @@ import cn.lawliex.ask.following.user.FollowUserPresenter;
 import cn.lawliex.ask.question.list.QuestionListContract;
 import cn.lawliex.ask.question.list.QuestionListFragment;
 
-public class FollowingActivity extends Activity implements View.OnClickListener{
+public class FollowingActivity extends AppCompatActivity implements View.OnClickListener{
     TextView userTxt;
     TextView questionTxt;
     TextView collectionTxt;

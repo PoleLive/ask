@@ -14,6 +14,7 @@ import java.util.List;
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.Message;
+import cn.lawliex.ask.data.source.local.MessageDbHelper;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.util.AskHelper;
 
@@ -24,10 +25,12 @@ import cn.lawliex.ask.util.AskHelper;
 public class MessageListAdapter extends BaseAdapter {
     MessageListFragment fragment;
     List<Message> datas;
-
+    MessageDbHelper dbHelper;
     public MessageListAdapter(MessageListFragment fragment, List<Message> datas) {
         this.fragment = fragment;
         this.datas = datas;
+        dbHelper = new MessageDbHelper(fragment.getActivity());
+
     }
 
     @Override
@@ -55,6 +58,8 @@ public class MessageListAdapter extends BaseAdapter {
             h.nameTxt = (TextView)convertView.findViewById(R.id.msg_list_name_txt);
             h.timeTxt = (TextView)convertView.findViewById(R.id.msg_list_time_txt);
             h.headImg = (ImageView)convertView.findViewById(R.id.msg_list_head_img);
+            h.msgHintTxt = (TextView)convertView.findViewById(R.id.msg_list_new_msg_count);
+
             convertView.setTag(h);
         }else{
             h = (ViewHolder)convertView.getTag();
@@ -67,6 +72,13 @@ public class MessageListAdapter extends BaseAdapter {
             h.nameTxt.setText(m.getFromName());
             Glide.with(fragment.getActivity()).load(UrlContract.USER_HEAD_URL + m.getFromUrl()).into(h.headImg);
         }
+        int maxId = dbHelper.getLastestMessageId(m.getConversationId());
+        if(m.getUnReadCount() > 0) {
+            h.msgHintTxt.setVisibility(View.VISIBLE);
+            h.msgHintTxt.setText(m.getUnReadCount() + "");
+        }else{
+            h.msgHintTxt.setVisibility(View.INVISIBLE);
+        }
         h.contentTxt.setText(m.getContent());
         h.timeTxt.setText(AskHelper.format(m.getCreatedDate()));
         return convertView;
@@ -76,6 +88,6 @@ public class MessageListAdapter extends BaseAdapter {
         TextView nameTxt;
         TextView contentTxt;
         TextView timeTxt;
-
+        TextView msgHintTxt;
     }
 }

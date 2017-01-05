@@ -17,6 +17,16 @@ public class Message {
     private String fromName;
     private String toName;
     String fromUrl;
+    String toUrl;
+    int unReadCount;
+
+    public int getUnReadCount() {
+        return unReadCount;
+    }
+
+    public void setUnReadCount(int unReadCount) {
+        this.unReadCount = unReadCount;
+    }
 
     public String getToUrl() {
         return toUrl;
@@ -34,7 +44,7 @@ public class Message {
         this.fromUrl = fromUrl;
     }
 
-    String toUrl;
+
 
     public int getFromId() {
         return fromId;
