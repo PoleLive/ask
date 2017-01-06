@@ -39,5 +39,5 @@ public class UrlContract {
     public static final String FOLLOWEES = "follow/followees";
     public static final String FOLLOW_QUESTION = "follow/followquestion";
     public static final String FOLLOW_ANSWER = "follow/answer";
-
+    public static final String FEEDS_PULL = "feeds/pull";
 }

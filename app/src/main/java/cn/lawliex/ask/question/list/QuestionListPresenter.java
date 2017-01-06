@@ -19,7 +19,6 @@ import rx.Subscriber;
 
 public class QuestionListPresenter implements QuestionListContract.Presenter {
     QuestionListContract.View questionListView;
-
     @Override
     public void loadQuestionList(Map<String,String> map) {
         String path = UrlContract.QUESTION_LIST;
@@ -32,7 +31,6 @@ public class QuestionListPresenter implements QuestionListContract.Presenter {
             public void onCompleted() {
 
             }
-
             @Override
             public void onError(Throwable e) {
                 questionListView.showErrorView(e.getMessage());

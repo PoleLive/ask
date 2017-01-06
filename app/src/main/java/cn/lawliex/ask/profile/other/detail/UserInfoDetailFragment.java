@@ -171,7 +171,6 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 break;
             case R.id.user_info_detail_question_layout:
                 Intent intent = new Intent(getActivity(), QuestionListActivity.class);
-
                 intent.putExtra("userId",userInfo.getId());
                 startActivity(intent);
                 break;
@@ -181,7 +180,6 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 startActivity(intent1);
                 break;
             case R.id.user_info_detail_txt_bn_follow_user:
-
                 presenter.follow(userInfo.getId());
                 break;
             case R.id.user_info_detail_followers_layout:

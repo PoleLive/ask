@@ -10,22 +10,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 public class BaseActivity extends AppCompatActivity {
-    public void init(String title){
-        Toolbar toolbar = (Toolbar)findViewById(R.id.base_activity_toolbar);
-        setSupportActionBar(toolbar);
+    public void init(String title,final AppCompatActivity activity){
+        Toolbar toolbar = (Toolbar)activity.findViewById(R.id.toolbar);
+        activity.setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_keyboard_arrow_left_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                activity.finish();
             }
         });
-        setTitle(title);
+        activity.setTitle(title);
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-    }
-
 }

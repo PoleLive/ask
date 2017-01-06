@@ -4,8 +4,10 @@
     android:id="@+id/activity_user_info_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity">
+    <include
+        layout="@layout/activity_base"
+        />
     <fragment
         android:id="@+id/user_info_detail_fragment"
         android:layout_width="match_parent"

@@ -5,291 +5,307 @@
     android:orientation="vertical"
     android:background="#f3f3f3"
     >
-    <FrameLayout
-        android:background="#ffffff"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@mipmap/bg"
-            />
-        <com.joooonho.SelectableRoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/image"
-            android:src="@mipmap/head"
-            android:layout_gravity="center"
-            android:layout_height="100dp"
-            android:layout_width="100dp"
-            android:scaleType="centerCrop"
-            app:sriv_left_top_corner_radius="16dip"
-            app:sriv_right_top_corner_radius="0dip"
-            app:sriv_left_bottom_corner_radius="48dip"
-            app:sriv_right_bottom_corner_radius="16dip"
-            app:sriv_border_width="2dip"
-            app:sriv_border_color="#008fea"
-            app:sriv_oval="true" />
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <TextView
-                android:id="@+id/user_info_detail_txt_name"
+            <FrameLayout
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@mipmap/bg"
+                    />
+                <com.joooonho.SelectableRoundedImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/image"
+                    android:src="@mipmap/head"
+                    android:layout_gravity="center"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:scaleType="centerCrop"
+                    app:sriv_left_top_corner_radius="16dip"
+                    app:sriv_right_top_corner_radius="0dip"
+                    app:sriv_left_bottom_corner_radius="48dip"
+                    app:sriv_right_bottom_corner_radius="16dip"
+                    app:sriv_border_width="2dip"
+                    app:sriv_border_color="#008fea"
+                    app:sriv_oval="true" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/user_info_detail_txt_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Haley"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="20dp"
+                        android:layout_margin="5dp"
+                        />
+                    <TextView
+                        android:id="@+id/user_info_detail_txt_motto"
+                        android:layout_margin="5dp"
+                        android:text="世界那么大，我想去看看！"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        />
+                </LinearLayout>
+
+            </FrameLayout>
+            <LinearLayout
+                android:id="@+id/user_info_detail_question_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Haley"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:layout_margin="5dp"
-                />
-            <TextView
-                android:id="@+id/user_info_detail_txt_motto"
-                android:layout_margin="5dp"
-                android:text="世界那么大，我想去看看！"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/question"
+                    />
+                <TextView
+                    android:background="#ffffff"
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    android:layout_height="wrap_content"
+                    android:text="提问："
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:id="@+id/user_info_detail_txt_question_count"
+                    android:text="33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/forward"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_info_detail_answer_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/answer"
+                    />
+                <TextView
+                    android:background="#ffffff"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="回答："
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:id="@+id/user_info_detail_txt_answer_count"
+                    android:text="33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/forward"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_info_detail_followers_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/follow"
+                    />
+
+                <TextView
+                    android:background="#ffffff"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="粉丝："
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+
+                    android:id="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/user_info_detail_txt_follower_count"
+                    android:text="33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/forward"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/user_info_detail_following_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/follower"
+                    />
+                <TextView
+                    android:background="#ffffff"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="关注："
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:id="@+id/user_info_detail_txt_followee_count"
+                    android:text="33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/forward"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
+                android:background="#ffffff"
+                android:padding="5dp"
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/like"
+                    />
+                <TextView
+                    android:background="#ffffff"
+
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    android:layout_height="wrap_content"
+                    android:text="喜欢："
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+
+                    />
+                <TextView
+                    android:id="@+id/user_info_detail_txt_like_count"
+                    android:text="33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@mipmap/forward"
+                    android:layout_marginRight="10dp"
+
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal"
                 android:gravity="center"
-                />
+                >
+                <Button
+                    android:id="@+id/user_info_detail_bn_send_message"
+                    android:text="发消息"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+                <Button
+                    android:id="@+id/user_info_detail_txt_bn_follow_user"
+                    android:text="关注"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/activity_user_info_txt"
+                    />
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </FrameLayout>
-    <LinearLayout
-        android:id="@+id/user_info_detail_question_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:padding="5dp"
-        >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/question"
-            />
-        <TextView
-            android:background="#ffffff"
-            android:layout_marginTop="2dp"
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:text="提问："
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-
-            />
-        <TextView
-            android:id="@+id/user_info_detail_txt_question_count"
-            android:text="33"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/forward"
-            android:layout_marginRight="10dp"
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/user_info_detail_answer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:padding="5dp"
-        >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/answer"
-            />
-        <TextView
-            android:background="#ffffff"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:text="回答："
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-
-            />
-        <TextView
-            android:id="@+id/user_info_detail_txt_answer_count"
-            android:text="33"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/forward"
-            android:layout_marginRight="10dp"
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/user_info_detail_followers_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:padding="5dp"
-        >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/follow"
-            />
-        <TextView
-            android:background="#ffffff"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:text="粉丝："
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-
-            />
-        <TextView
-            android:id="@+id/user_info_detail_txt_follower_count"
-            android:text="33"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/forward"
-            android:layout_marginRight="10dp"
-
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/user_info_detail_following_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:padding="5dp"
-        >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/follower"
-            />
-        <TextView
-            android:background="#ffffff"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:text="关注："
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-
-            />
-        <TextView
-            android:id="@+id/user_info_detail_txt_followee_count"
-            android:text="33"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/forward"
-            android:layout_marginRight="10dp"
-
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:background="#ffffff"
-        android:padding="5dp"
-        >
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/like"
-            />
-        <TextView
-            android:background="#ffffff"
-
-            android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
-            android:text="喜欢："
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-
-            />
-        <TextView
-            android:id="@+id/user_info_detail_txt_like_count"
-            android:text="33"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-
-            />
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/forward"
-            android:layout_marginRight="10dp"
-
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:layout_marginTop="2dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
-        <Button
-            android:id="@+id/user_info_detail_bn_send_message"
-            android:text="发消息"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
-            />
-        <Button
-            android:id="@+id/user_info_detail_txt_bn_follow_user"
-            android:text="关注"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
 
 </LinearLayout>

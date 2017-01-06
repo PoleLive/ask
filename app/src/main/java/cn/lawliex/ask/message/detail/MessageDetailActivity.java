@@ -3,6 +3,7 @@ package cn.lawliex.ask.message.detail;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,9 +24,20 @@ public class MessageDetailActivity extends AppCompatActivity implements MessageD
     List<Message> messages;
     Button sendBn;
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message_detail);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("消息");
         MessageDetailContract.Presenter presenterx = new MessageDetailPresenter(this);
         listView = (ListView)findViewById(R.id.msg_detail_listview);
         sendBn = (Button)findViewById(R.id.msg_detail_bn_send);

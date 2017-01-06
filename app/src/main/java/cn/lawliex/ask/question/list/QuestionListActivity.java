@@ -32,6 +32,7 @@ import cn.lawliex.ask.message.list.MessageListActivity;
 import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
 import cn.lawliex.ask.question.add.QuestionAddActivity;
 import cn.lawliex.ask.settings.SettingsActivity;
+import cn.lawliex.ask.timeline.TimeLineActivity;
 import cn.lawliex.ask.util.AskHelper;
 import rx.Subscriber;
 
@@ -50,7 +51,7 @@ public class QuestionListActivity extends AppCompatActivity
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                Intent intent = new Intent(QuestionListActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(QuestionListActivity.this, QuestionAddActivity.class);
                 startActivity(intent);
             }
         });
@@ -150,7 +151,8 @@ public class QuestionListActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(this, TimeLineActivity.class);
+            startActivity(intent);
         } else if (id == R.id.question_list_settings) {
             Intent intent = new Intent(this, BaseActivity.class);
             startActivity(intent);

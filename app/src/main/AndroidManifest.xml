@@ -41,7 +41,13 @@
         <activity android:name=".message.detail.MessageDetailActivity" />
         <activity android:name=".following.FollowingActivity" />
         <activity android:name=".settings.SettingsActivity" />
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".BaseActivity" />
+        <activity
+            android:name=".timeline.TimeLineActivity"
+            android:label="@string/title_activity_time_line"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
