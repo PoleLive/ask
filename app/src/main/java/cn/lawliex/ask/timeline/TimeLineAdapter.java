@@ -111,7 +111,7 @@ public class TimeLineAdapter extends BaseAdapter {
                     content += question.getContent();
                     count1 += question.getLikeCount();
                     count2 += question.getCommentCount();
-                    txt1 += "赞同-";
+                    txt1 += "关注-";
                     txt2 += "回答-";
                     txt3 += "关注问题";
                 }else{
@@ -137,7 +137,7 @@ public class TimeLineAdapter extends BaseAdapter {
                 content += question.getContent();
                 count1 += question.getLikeCount();
                 count2 += question.getCommentCount();
-                txt1 += "赞同-";
+                txt1 += "关注-";
                 txt2 += "回答-";
                 txt3 += "关注问题";
                 break;
@@ -164,7 +164,9 @@ public class TimeLineAdapter extends BaseAdapter {
         h.likeCount.setText(count1);
         h.txt1.setText(txt1);
         h.txt2.setText(txt2);
+        h.follow.setText(txt3);
         return convertView;
+
     }
     class ViewHolder{
         TextView likeCount, commentCount, follow, title, content, info, subInfo, txt1, txt2;

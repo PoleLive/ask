@@ -8,6 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
         >
         <com.joooonho.SelectableRoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,6 +29,7 @@
         <TextView
             android:id="@+id/adapter_feed_info"
             android:text="某某某"
+            android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,6 +37,7 @@
         <TextView
             android:layout_gravity="center"
             android:id="@+id/adapter_feed_sub_info"
+            android:layout_marginLeft="3dp"
             android:text="关注了问题"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,30 +47,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="15dp"
         >
         <TextView
             android:id="@+id/adapter_feed_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="数据还没加载呢。。。别急"
+            android:textSize="20sp"
+            android:textColor="#111111"
             />
         <TextView
             android:id="@+id/adapter_feed_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#333333"
             android:text="网络这么渣，我还有什么可以说的"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         >
         <LinearLayout
             android:id="@+id/adapter_feed_like_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-
+            android:layout_marginLeft="15dp"
             >
             <TextView
                 android:id="@+id/adapter_feed_like_count"

@@ -3,6 +3,7 @@ package cn.lawliex.ask.timeline;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,9 @@ import android.widget.Toast;
 import java.util.List;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.answer.detail.AnswerDetailActivity;
 import cn.lawliex.ask.data.Feed;
+import cn.lawliex.ask.question.detail.QuestionDetailActivity;
 
 /**
  * Created by Terence on 2017/1/6.
@@ -34,13 +37,23 @@ public class TimeLineFragment extends Fragment implements TimeLineContract.View 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timeline, container, false);
         listView = (ListView)view.findViewById(R.id.frament_timeline_listview);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                Feed feed = feeds.get(position);
+                Intent intent;
+                if(feed.getEntityType() == 1){
+                    intent = new Intent(getActivity(), QuestionDetailActivity.class);
+                    intent.putExtra("questionId",feed.getInt("id"));
+                    startActivity(intent);
+                }else{
+                    intent = new Intent(getActivity(), AnswerDetailActivity.class);
+                    intent.putExtra("answerId",feed.getInt("id"));
+                    startActivity(intent);
+                }
             }
         });
         return view;

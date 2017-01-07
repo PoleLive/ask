@@ -16,6 +16,8 @@ import cn.lawliex.ask.data.Feed;
 public class TimeLineContract {
     public interface Presenter extends BasePresenter{
         void loadFeeds();
+        void collect();
+        void follow();
     }
     public interface View extends BaseView<Presenter> {
         void showFeedsView(List<Feed> feeds);

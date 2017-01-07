@@ -16,7 +16,9 @@ import java.util.Map;
 
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.Message;
+import cn.lawliex.ask.data.User;
 import cn.lawliex.ask.data.UserInfo;
+import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.profile.other.list.UserInfoListContract;
 import cn.lawliex.ask.util.AskHelper;
@@ -137,5 +139,28 @@ public class UserInfoDetailPresenter implements UserInfoDetailContract.Presenter
     @Override
     public void loadMessage(int toId) {
 
+    }
+
+    @Override
+    public void updateInfo() {
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if (jsonObject.getInteger("code") == 0){
+                    User user = jsonObject.getJSONObject("user").toJavaObject(User.class);
+                    UserLocalDataSource.getInstance(view.getActivity()).saveUser(user);
+                }
+            }
+        }).post("user/update",AskHelper.getRequestMap(view.getActivity()));
     }
 }

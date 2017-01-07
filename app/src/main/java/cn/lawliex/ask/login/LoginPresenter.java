@@ -9,7 +9,9 @@ import cn.lawliex.ask.ApplicationContract;
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.Result;
 import cn.lawliex.ask.data.User;
+import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.util.AskHelper;
 import rx.Subscriber;
 
 /**
@@ -20,25 +22,26 @@ public class LoginPresenter implements LoginContract.Presenter {
     LoginContract.View loginView;
     @Override
     public void start() {
-        Map<String,String> map = new HashMap<>();
-        String ticket = loginView.getTicket();
-        if(loginView.getTicket()!=null){
-            map.put("ticket",ticket);
-            HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
-                @Override
-                public void onCompleted() {
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if (jsonObject.getInteger("code") == 0){
+                    User user = jsonObject.getJSONObject("user").toJavaObject(User.class);
+                    UserLocalDataSource.getInstance(loginView.getActivity()).saveUser(user);
+                    loginView.toMainAct();
                 }
-                @Override
-                public void onError(Throwable e) {
-                }
-                @Override
-                public void onNext(JSONObject jsonObject) {
-                    if(jsonObject.getInteger("code")== 0){
-                        loginView.toMainAct();
-                    }
-                }
-            }).post(UrlContract.TEST_LOGINED, map);
-        }
+            }
+        }).post("user/update", AskHelper.getRequestMap(loginView.getActivity()));
 
     }
     public LoginPresenter(@NonNull LoginContract.View loginView){

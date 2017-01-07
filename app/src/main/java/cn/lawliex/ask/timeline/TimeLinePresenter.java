@@ -55,6 +55,16 @@ public class TimeLinePresenter implements TimeLineContract.Presenter {
     }
 
     @Override
+    public void collect() {
+
+    }
+
+    @Override
+    public void follow() {
+
+    }
+
+    @Override
     public void start() {
         loadFeeds();
     }

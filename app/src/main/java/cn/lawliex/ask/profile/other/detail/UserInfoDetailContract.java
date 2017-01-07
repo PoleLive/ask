@@ -18,6 +18,7 @@ public class UserInfoDetailContract {
         void isFollowing(int userId);
         void sendMessage(Message message);
         void loadMessage(int toId);
+        void updateInfo();
     }
     public interface View extends BaseView<Presenter> {
         void showUserInfo(UserInfo userInfo);

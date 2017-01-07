@@ -15,8 +15,17 @@ public class Feed {
     private String name;
     private int type;
     private Date createdDate;
+    private int entityType;
     private String data;
     private String headUrl;
+
+    public int getEntityType() {
+        return entityType;
+    }
+
+    public void setEntityType(int entityType) {
+        this.entityType = entityType;
+    }
 
     public String getHeadUrl() {
         return headUrl;

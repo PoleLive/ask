@@ -66,15 +66,16 @@ public class QuestionListActivity extends AppCompatActivity
         QuestionListPresenter presenter = new QuestionListPresenter(fragment);
         //fragment.setPresenter(presenter);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        ImageView imageView = (ImageView) LayoutInflater.from(this).inflate(R.layout.nav_header_question_list,navigationView,false).findViewById(R.id.nav_head_img);
-        String headUrl = UserLocalDataSource.getInstance(this).getString("headUrl","");
-        Glide.with(this).load(UrlContract.SERVER_ADDRESS + "/" + headUrl).into(imageView);
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ImageView imageView = (ImageView) findViewById(R.id.nav_head_img);
+        String headUrl = UserLocalDataSource.getInstance(this).getString("headUrl","");
+        Glide.with(this).load(UrlContract.SERVER_ADDRESS + "/" + headUrl).into(imageView);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
