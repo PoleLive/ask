@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -43,7 +44,7 @@ public class FollowingActivity extends AppCompatActivity implements View.OnClick
         userTxt.setOnClickListener(this);
         questionTxt.setOnClickListener(this);
         collectionTxt.setOnClickListener(this);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         int selection = getIntent().getIntExtra("selection",0);
         ft = getFragmentManager().beginTransaction();
         switch (selection){
@@ -52,6 +53,7 @@ public class FollowingActivity extends AppCompatActivity implements View.OnClick
                 userFragment.setActivity(this);
                 FollowUserContract.Presenter presenter2 = new FollowUserPresenter(userFragment);
                 ft.replace(R.id.following_fragment, userFragment).commit();
+                setTitle("关注的用户");
                 break;
             case 2:
                 questionFragment = new QuestionListFragment();
@@ -59,16 +61,26 @@ public class FollowingActivity extends AppCompatActivity implements View.OnClick
                 QuestionListContract.Presenter presenter1 =new FollowQuestionPresenter(questionFragment);
                 presenter1.start();
                 ft.replace(R.id.following_fragment, questionFragment).commit();
+                setTitle("关注的问题");
                 break;
             case 3:
                 answerFragment = new QandAListFragment();
                 answerFragment.setAct(this);
                 QandAListContract.Presenter presenter3 = new FollowAnswerPresenter(answerFragment);
                 ft.replace(R.id.following_fragment, answerFragment).commit();
+                setTitle("收藏的回答");
                 break;
         }
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @Override
     public void onClick(View v) {
         ft = getFragmentManager().beginTransaction();
@@ -78,6 +90,7 @@ public class FollowingActivity extends AppCompatActivity implements View.OnClick
                 userFragment.setActivity(this);
                 FollowUserContract.Presenter presenter2 = new FollowUserPresenter(userFragment);
                 ft.replace(R.id.following_fragment, userFragment).commit();
+                setTitle("关注的用户");
                 break;
             case R.id.following_question_txt:
                 questionFragment = new QuestionListFragment();
@@ -85,12 +98,14 @@ public class FollowingActivity extends AppCompatActivity implements View.OnClick
                 QuestionListContract.Presenter presenter1 =new FollowQuestionPresenter(questionFragment);
                 presenter1.start();
                 ft.replace(R.id.following_fragment, questionFragment).commit();
+                setTitle("关注的问题");
                 break;
             case R.id.following_answer_txt:
                 answerFragment = new QandAListFragment();
                 answerFragment.setAct(this);
                 QandAListContract.Presenter presenter3 = new FollowAnswerPresenter(answerFragment);
                 ft.replace(R.id.following_fragment, answerFragment).commit();
+                setTitle("收藏的回答");
                 break;
         }
     }

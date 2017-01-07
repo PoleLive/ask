@@ -7,6 +7,18 @@
     android:orientation="vertical"
     tools:context="cn.lawliex.ask.following.FollowingActivity"
     >
+
+
+
+    <LinearLayout
+        android:id="@+id/following_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        >
+
+    </LinearLayout>
     <LinearLayout
 
         android:layout_width="match_parent"
@@ -14,50 +26,42 @@
         android:orientation="horizontal"
         >
         <TextView
-            android:id="@+id/following_user_txt"
-            android:text="用户"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/following_user_txt"
+
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:gravity="center"
-            android:padding="5dp"
-            android:background="#1a2aff"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:background="@mipmap/user"
             />
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/following_question_txt"
-            android:text="问题"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:gravity="center"
-            android:padding="5dp"
-            android:background="#1a2aff"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:background="@mipmap/question_2"
             />
         <TextView
-            android:id="@+id/following_answer_txt"
-            android:text="收藏"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/following_answer_txt"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:gravity="center"
-            android:padding="5dp"
-            android:background="#1a2aff"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
+            android:background="@mipmap/faq"
             />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/following_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
-
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>
