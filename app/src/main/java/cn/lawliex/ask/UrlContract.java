@@ -32,7 +32,7 @@ public class UrlContract {
     public static final String COMMENT_DETAIL = "comment/detail";
     public static final String COMMETN_LIST = "comment/list";
     public static final String MY_QUESTION_LIST = "question/mylist";
-    public static final String Q_AND_A_LIST = "answer/qlist";
+    public static final String Q_AND_A_LIST = "answer/all";
     public static final String Q_AND_A_USER_LIST = "answer/ulist";
     public static final String USER_HEAD_URL = SERVER_ADDRESS + "/";
     public static final String FOLLOWERS = "follow/followers";

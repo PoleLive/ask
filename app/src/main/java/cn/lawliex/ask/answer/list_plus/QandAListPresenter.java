@@ -49,7 +49,7 @@ public class QandAListPresenter implements QandAListContract.Presenter {
             @Override
             public void onNext(JSONObject jsonObject) {
                 if(jsonObject.getInteger("code") == 0){
-                    JSONArray array = jsonObject.getJSONArray("datas");
+                    JSONArray array = jsonObject.getJSONArray("answers");
                     List<Answer> answerList = new ArrayList<Answer>();
                     for(int i = 0; i < array.size(); i++){
                         Answer answer = array.getJSONObject(i).toJavaObject(Answer.class);

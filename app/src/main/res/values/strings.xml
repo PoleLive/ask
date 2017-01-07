@@ -16,4 +16,5 @@
     <string name="action_settings">注销</string>
     <string name="question_add_submit">提问</string>
     <string name="title_activity_time_line">TimeLineActivity</string>
+    <string name="title_activity_discover">DiscoverActivity</string>
 </resources>
