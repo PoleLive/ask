@@ -46,26 +46,15 @@ public class HttpRequests {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         httpService = retrofit.create(HttpApi.class);
-        subscriber = new Subscriber<JSONObject>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(JSONObject tmp) {
-                response = tmp;
-            }
-        };
-
     }
     public void post(RequestBody description, MultipartBody.Part body, Map<String,String>map){
         observable = httpService.upload(description, body,map);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+    public void sendImg(RequestBody description, MultipartBody.Part body, Map<String,String>map){
+        observable = httpService.sendImg(description, body,map);
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
@@ -107,10 +96,7 @@ public class HttpRequests {
         return response;
 
     }
-    public HttpRequests baseUrl(String url){
-        baseUrl = url;
-        return instance;
-    }
+
     public HttpRequests subscribe(Subscriber<JSONObject> subscriber){
         this.subscriber = subscriber;
         return instance;

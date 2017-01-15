@@ -40,8 +40,10 @@ public class MessageAddActivity extends AppCompatActivity implements MessageAddC
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editText.getText().toString().length() != 0)
+                if(editText.getText().toString().length() != 0) {
                     presenter.start();
+                    editText.setText("");
+                }
             }
         });
     }

@@ -90,6 +90,7 @@ public class MessageDetailPresenter implements MessageDetailContract.Presenter {
         final Message message = view.getMessageToSend();
         Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
         map.put("toId",message.getToId() + "");
+        map.put("type","0");
         map.put("content",message.getContent());
         HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
             @Override
@@ -118,6 +119,39 @@ public class MessageDetailPresenter implements MessageDetailContract.Presenter {
             isAlive = false;
         }
     }
+
+    @Override
+    public void sendImg(String imgName) {
+        final Message message = view.getMessageToSend();
+        message.setContent(imgName);
+        message.setType(1);
+        Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
+        map.put("toId",message.getToId() + "");
+        map.put("type","1");
+        map.put("content",imgName);
+        HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(JSONObject jsonObject) {
+                if(jsonObject.getInteger("code") == 0){
+                    Message m = jsonObject.getJSONObject("data").toJavaObject(Message.class);
+                    dbHelper.insert(m);
+                    start();
+                }
+            }
+        }).post(UrlContract.MESSAGE_ADD,map);
+
+    }
+
     @Override
     public void start() {
         loadMessageDetail();

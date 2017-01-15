@@ -7,7 +7,8 @@ package cn.lawliex.ask;
 public class UrlContract {
     //服务器地址
    // public static final String SERVER_ADDRESS = "http://10.21.27.19:8080";
-    public static final String SERVER_ADDRESS = "http://139.199.82.120:8080";
+    //public static final String SERVER_ADDRESS = "http://139.199.82.120:8080";
+    public static final String SERVER_ADDRESS = "http://192.168.1.7:8080";
     //path
     public static final String LOGIN_PATH = "login";
     public static final String REGISTER_PATH = "register";
@@ -41,4 +42,5 @@ public class UrlContract {
     public static final String FOLLOW_QUESTION = "follow/followquestion";
     public static final String FOLLOW_ANSWER = "follow/answer";
     public static final String FEEDS_PULL = "feeds/pull";
+    public static final String MSG_IMG = SERVER_ADDRESS + "/msgimg/";
 }

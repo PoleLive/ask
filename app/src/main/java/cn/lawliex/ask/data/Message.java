@@ -16,9 +16,18 @@ public class Message {
     private int id;
     private String fromName;
     private String toName;
+    private int type;
     String fromUrl;
     String toUrl;
     int unReadCount;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public int getUnReadCount() {
         return unReadCount;

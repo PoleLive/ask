@@ -19,14 +19,14 @@ import cn.lawliex.ask.data.Message;
  */
 
 public class MessageDbHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
     public static final String DATABASE_NAME = "ask.db";
     private static final String TEXT_TYPES = " TEXT";
     private static final String DATE_TYPES = " DATE";
     private static final String INT_TYPES = " INTEGER";
     private static final String COMMA_SEP = ",";
     private static final String[] row = {"id","from_id","to_id","created_date","conversation_id","has_read","content",
-                                            "from_name","to_name","from_url","to_url"};
+                                            "from_name","to_name","from_url","to_url","type"};
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + "message(" +
                     "id INTEGER PRIMARY KEY," +
@@ -39,6 +39,7 @@ public class MessageDbHelper extends SQLiteOpenHelper {
                     "from_name" + TEXT_TYPES + COMMA_SEP +
                     "to_name" + TEXT_TYPES + COMMA_SEP +
                     "from_url" + TEXT_TYPES + COMMA_SEP +
+                    "type" + INT_TYPES + COMMA_SEP +
                     "to_url" + TEXT_TYPES +  ")";
     private Context context;
     public MessageDbHelper(Context context) {
@@ -73,6 +74,7 @@ public class MessageDbHelper extends SQLiteOpenHelper {
             values.put(row[8], message.getToName());
             values.put(row[9], message.getFromUrl());
             values.put(row[10], message.getToUrl());
+            values.put(row[11],message.getType());
             db.insert("message", null, values);
         }catch (Exception e){
             e.getMessage();
@@ -95,6 +97,7 @@ public class MessageDbHelper extends SQLiteOpenHelper {
             values.put(row[8], message.getToName());
             values.put(row[9], message.getFromUrl());
             values.put(row[10], message.getToUrl());
+            values.put(row[11],message.getType());
             db.update("message", values,null,null);
         }catch (Exception e){
             e.getMessage();
@@ -141,6 +144,7 @@ public class MessageDbHelper extends SQLiteOpenHelper {
                 message.setToName(cursor.getString(cursor.getColumnIndex(row[8])));
                 message.setFromUrl(cursor.getString(cursor.getColumnIndex(row[9])));
                 message.setToUrl(cursor.getString(cursor.getColumnIndex(row[10])));
+                message.setType(cursor.getInt(cursor.getColumnIndex(row[11])));
                 messages.add(message);
             }while(cursor.moveToNext());
         }

@@ -15,6 +15,7 @@ public class MessageDetailContract {
         void loadMessageDetail();
         void sendMessage();
         void onDestroy();
+        void sendImg(String imgName);
     }
     public interface View extends BaseView<Presenter> {
         void showMessageDetail(List<Message> messageList);

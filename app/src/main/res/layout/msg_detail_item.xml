@@ -24,17 +24,35 @@
             app:sriv_border_color="#008fea"
             app:sriv_oval="true"
             />
-        <TextView
-            android:id="@+id/msg_detail_left_txt"
-            android:text=""
+        <FrameLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="30dp"
-            android:textColor="#ffffff"
-            android:padding="5dp"
-            android:background="@drawable/message_item_bg"
-            />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/msg_detail_left_txt"
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="30dp"
+                android:textColor="#ffffff"
+                android:padding="5dp"
+                android:background="@drawable/message_item_bg"
+                />
+            <com.joooonho.SelectableRoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/msg_detail_left_imgmsg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="30dp"
+                android:padding="5dp"
+                android:background="@drawable/message_item_bg"
+                android:src="@mipmap/head"
+                />
+
+        </FrameLayout>
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/msg_detail_right_layout"
@@ -45,18 +63,41 @@
         android:gravity="right"
         android:layout_gravity="right"
         >
-
-        <TextView
-            android:id="@+id/msg_detail_right_txt"
-            android:text="sdfa"
-            android:layout_marginTop="5dp"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/message_item_bg"
-            android:layout_marginLeft="50dp"
-            android:textColor="#ffffff"
-            android:padding="5dp"
-            />
+            android:paddingLeft="50dp"
+            android:gravity="right"
+            android:layout_gravity="right"
+            >
+            <TextView
+                android:id="@+id/msg_detail_right_txt"
+                android:text="sdfa"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/message_item_bg"
+                android:layout_marginLeft="50dp"
+                android:textColor="#ffffff"
+                android:layout_gravity="right"
+                android:padding="5dp"
+                />
+            <com.joooonho.SelectableRoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/msg_detail_right_imgmsg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="50dp"
+                android:padding="5dp"
+                android:background="@drawable/message_item_bg"
+                android:src="@mipmap/head"
+                />
+
+        </FrameLayout>
+
         <com.joooonho.SelectableRoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/msg_detail_right_img"

@@ -61,10 +61,11 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
     UserInfoDetailContract.Presenter presenter;
     SelectableRoundedImageView headImg;
     TextView nameTxt, mottoTxt, questionCountTxt, answerCountTxt, followerCountTxt, followeeCountTxt, likeCount;
-    Button  followBn, sendMsgBn;
+    Button followBn, sendMsgBn;
     GalleryConfig galleryConfig;
-    LinearLayout questionLayout,answerLayout, followingLayout, followersLayout;
+    LinearLayout questionLayout, answerLayout, followingLayout, followersLayout;
     UserInfo userInfo;
+
     @Override
     public void showUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
@@ -80,14 +81,14 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
 
     @Override
     public void showErrorMessage(String errMsg) {
-        Toast.makeText(getActivity(),errMsg,Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), errMsg, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void changeFollowBnState(boolean follow) {
-        if(follow){
+        if (follow) {
             followBn.setText("已关注");
-        }else{
+        } else {
             followBn.setText("关注");
         }
     }
@@ -119,21 +120,21 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.user_info_detail_fragment,container, false);
-        sendMsgBn = (Button)view.findViewById(R.id.user_info_detail_bn_send_message) ;
-        nameTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_name);
-        questionCountTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_question_count);
-        answerCountTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_answer_count);
-        followerCountTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_follower_count);
-        followeeCountTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_followee_count);
-        likeCount = (TextView)view.findViewById(R.id.user_info_detail_txt_like_count);
-        mottoTxt = (TextView)view.findViewById(R.id.user_info_detail_txt_motto);
+        View view = inflater.inflate(R.layout.user_info_detail_fragment, container, false);
+        sendMsgBn = (Button) view.findViewById(R.id.user_info_detail_bn_send_message);
+        nameTxt = (TextView) view.findViewById(R.id.user_info_detail_txt_name);
+        questionCountTxt = (TextView) view.findViewById(R.id.user_info_detail_txt_question_count);
+        answerCountTxt = (TextView) view.findViewById(R.id.user_info_detail_txt_answer_count);
+        followerCountTxt = (TextView) view.findViewById(R.id.user_info_detail_txt_follower_count);
+        followeeCountTxt = (TextView) view.findViewById(R.id.user_info_detail_txt_followee_count);
+        likeCount = (TextView) view.findViewById(R.id.user_info_detail_txt_like_count);
+        mottoTxt = (TextView) view.findViewById(R.id.user_info_detail_txt_motto);
         followBn = (Button) view.findViewById(R.id.user_info_detail_txt_bn_follow_user);
-        answerLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_answer_layout);
-        questionLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_question_layout);
-        headImg = (SelectableRoundedImageView)view.findViewById(R.id.image);
-        followersLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_followers_layout);
-        followingLayout = (LinearLayout)view.findViewById(R.id.user_info_detail_following_layout);
+        answerLayout = (LinearLayout) view.findViewById(R.id.user_info_detail_answer_layout);
+        questionLayout = (LinearLayout) view.findViewById(R.id.user_info_detail_question_layout);
+        headImg = (SelectableRoundedImageView) view.findViewById(R.id.image);
+        followersLayout = (LinearLayout) view.findViewById(R.id.user_info_detail_followers_layout);
+        followingLayout = (LinearLayout) view.findViewById(R.id.user_info_detail_following_layout);
         followersLayout.setOnClickListener(this);
 
         sendMsgBn.setOnClickListener(this);
@@ -158,25 +159,25 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.user_info_detail_following_layout:
                 Intent followingIntent = new Intent(getActivity(), FollowingActivity.class);
-                followingIntent.putExtra("userId",userInfo.getId());
+                followingIntent.putExtra("userId", userInfo.getId());
                 startActivity(followingIntent);
                 break;
             case R.id.user_info_detail_answer_layout:
                 Intent intenta = new Intent(getActivity(), QandAListActivity.class);
-                intenta.putExtra("userId",userInfo.getId());
+                intenta.putExtra("userId", userInfo.getId());
                 startActivity(intenta);
                 break;
             case R.id.user_info_detail_question_layout:
                 Intent intent = new Intent(getActivity(), QuestionListActivity.class);
-                intent.putExtra("userId",userInfo.getId());
+                intent.putExtra("userId", userInfo.getId());
                 startActivity(intent);
                 break;
             case R.id.user_info_detail_bn_send_message:
                 Intent intent1 = new Intent(getActivity(), MessageDetailActivity.class);
-                intent1.putExtra("toId",userInfo.getId());
+                intent1.putExtra("toId", userInfo.getId());
                 startActivity(intent1);
                 break;
             case R.id.user_info_detail_txt_bn_follow_user:
@@ -184,7 +185,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 break;
             case R.id.user_info_detail_followers_layout:
                 Intent intentb = new Intent(getActivity(), FollowersActivity.class);
-                intentb.putExtra("userId",userInfo.getId());
+                intentb.putExtra("userId", userInfo.getId());
                 startActivity(intentb);
                 break;
             case R.id.image:
@@ -205,25 +206,36 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 break;
         }
     }
+
     @Override
-    public void showHeadImage(ImageView imageView){
-        Glide.with(getActivity()).load(UrlContract.SERVER_ADDRESS+ "/" + userInfo.getHeadUrl()).into(imageView);
+    public void showHeadImage(ImageView imageView) {
+        Glide.with(getActivity()).load(UrlContract.SERVER_ADDRESS + "/" + userInfo.getHeadUrl()).into(imageView);
     }
-    public void selectPhoto(GalleryConfig galleryConfig){
-        new Thread(new Runnable() {
+
+    public void selectPhoto(GalleryConfig galleryConfig) {
+        Thread clear =new Thread(new Runnable() {
             @Override
             public void run() {
                 Glide.get(getActivity()).clearDiskCache();
             }
-        }).start();
-        Glide.get(getActivity()).clearMemory();
-        GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(getActivity());
+        });
+        clear.start();
+        try {
+            clear.join();
+            Glide.get(getActivity()).clearMemory();
+            GalleryPick.getInstance().setGalleryConfig(galleryConfig).open(getActivity());
+        }catch (Exception e){
+            Toast.makeText(getActivity(), e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
     }
+
     IHandlerCallBack iHandlerCallBack = new IHandlerCallBack() {
         @Override
         public void onStart() {
             Log.i(TAG, "onStart: 开启");
         }
+
         @Override
         public void onSuccess(List<String> photoList) {
             Log.i(TAG, "onSuccess: 返回数据");
@@ -239,20 +251,20 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 RequestBody requestFile =
                         RequestBody.create(MediaType.parse("multipart/form-data"), file);
 
-// MultipartBody.Part  和后端约定好Key，这里的partName是用image
+                // MultipartBody.Part  和后端约定好Key，这里的partName是用image
                 MultipartBody.Part body =
                         MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
 
-// 添加描述
+                // 添加描述
 
                 RequestBody description =
                         RequestBody.create(
                                 MediaType.parse("multipart/form-data"), "nothing");
 
 
-// 执行请求
-                HttpRequests.getInstance().baseUrl("http://10.21.27.19:8080").subscribe(new Subscriber<JSONObject>() {
+                // 执行请求
+                HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
                     @Override
                     public void onCompleted() {
 
@@ -268,7 +280,6 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                         if (jsonObject.getInteger("code") == 0) {
                             Toast.makeText(getActivity(), "success", Toast.LENGTH_LONG).show();
                             showHeadImage(headImg);
-
                         }
                     }
                 }).post(description, body, map);

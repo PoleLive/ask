@@ -49,4 +49,8 @@ public interface HttpApi {
     @POST("upload")
     Observable<JSONObject> upload(@Part("file") RequestBody description,
                                   @Part MultipartBody.Part file, @QueryMap Map<String,String> map);
+    @Multipart
+    @POST("sendimg")
+    Observable<JSONObject> sendImg(@Part("file") RequestBody description,
+                                  @Part MultipartBody.Part file, @QueryMap Map<String,String> map);
 }
