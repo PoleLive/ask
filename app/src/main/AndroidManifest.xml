@@ -45,11 +45,12 @@
         <activity
             android:name=".timeline.TimeLineActivity"
             android:label="@string/title_activity_time_line"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".discover.DiscoverActivity"
             android:label="@string/title_activity_discover"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".follow.FollowActivity"></activity>
     </application>
 
 </manifest>

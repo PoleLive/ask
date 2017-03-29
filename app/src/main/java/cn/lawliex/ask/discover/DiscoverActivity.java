@@ -13,13 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.answer.list_plus.QandAListContract;
 import cn.lawliex.ask.answer.list_plus.QandAListFragment;
 import cn.lawliex.ask.answer.list_plus.QandAListPresenter;
+import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.following.FollowingActivity;
@@ -57,6 +61,12 @@ public class DiscoverActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerLayout =  navigationView.inflateHeaderView(R.layout.nav_header_question_list);
+        ImageView photoView = (ImageView)headerLayout.findViewById(R.id.nav_head_img);
+        SharedPreferencesHelper sphelper = new SharedPreferencesHelper(this);
+        String headUrl = sphelper.getString("headUrl");
+        Glide.with(this).load(UrlContract.SERVER_ADDRESS + "/" + headUrl).into(photoView);
+
         navigationView.setNavigationItemSelectedListener(this);
         setTitle("发现");
         QandAListFragment fragment = (QandAListFragment) getFragmentManager().findFragmentById(R.id.activity_discover_fragment);

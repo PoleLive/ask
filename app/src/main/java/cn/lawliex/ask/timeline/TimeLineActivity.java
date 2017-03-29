@@ -2,6 +2,7 @@ package cn.lawliex.ask.timeline;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,8 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
+
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.UrlContract;
+import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.discover.DiscoverActivity;
@@ -53,6 +60,13 @@ public class TimeLineActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //加载抽屉头像
+        View headLayout = navigationView.inflateHeaderView(R.layout.nav_header_time_line);
+        ImageView photoView = (ImageView)headLayout.findViewById(R.id.nav_head_img);
+        SharedPreferencesHelper sphelper = new SharedPreferencesHelper(this);
+        String headUrl = sphelper.getString("headUrl");
+        Glide.with(this).load(UrlContract.SERVER_ADDRESS + "/" + headUrl).into(photoView);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         TimeLineFragment fragment = (TimeLineFragment) getFragmentManager().findFragmentById(R.id.activity_timeline_fragment);
