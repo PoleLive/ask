@@ -48,6 +48,9 @@ public class UserInfoDetailPresenter implements UserInfoDetailContract.Presenter
     @Override
     public void start() {
         int userId = view.getActivity().getIntent().getIntExtra("userId",0);
+        if(userId == 0){
+            userId = UserLocalDataSource.getInstance(view.getActivity()).getInt("id",0);
+        }
         loadUserInfo(userId);
         isFollowing(userId);
     }

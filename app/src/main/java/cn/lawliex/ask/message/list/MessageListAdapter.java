@@ -79,7 +79,11 @@ public class MessageListAdapter extends BaseAdapter {
         }else{
             h.msgHintTxt.setVisibility(View.INVISIBLE);
         }
-        h.contentTxt.setText(m.getContent());
+        if(m.getType() == 0) {
+            h.contentTxt.setText(m.getContent());
+        }else{
+            h.contentTxt.setText("[图片]");
+        }
         h.timeTxt.setText(AskHelper.format(m.getCreatedDate()));
         return convertView;
     }

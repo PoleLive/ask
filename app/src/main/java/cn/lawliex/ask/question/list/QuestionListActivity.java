@@ -3,6 +3,7 @@ package cn.lawliex.ask.question.list;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ import cn.lawliex.ask.BaseActivity;
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.UrlContract;
 import cn.lawliex.ask.data.UserInfo;
+import cn.lawliex.ask.data.source.local.SharedPreferencesHelper;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.data.source.remote.http.HttpRequests;
 import cn.lawliex.ask.discover.DiscoverActivity;
@@ -67,7 +69,11 @@ public class QuestionListActivity extends AppCompatActivity
         QuestionListPresenter presenter = new QuestionListPresenter(fragment);
         //fragment.setPresenter(presenter);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
+        View headerLayout =  navigationView.inflateHeaderView(R.layout.nav_header_question_list);
+        ImageView photoView = (ImageView)headerLayout.findViewById(R.id.nav_head_img);
+        SharedPreferencesHelper sphelper = new SharedPreferencesHelper(this);
+        String headUrl = sphelper.getString("headUrl");
+        Glide.with(this).load(UrlContract.SERVER_ADDRESS + "/" + headUrl).into(photoView);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -134,30 +140,30 @@ public class QuestionListActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.profile) {
-            Intent intent = new Intent(this, UserInfoDetailActivity.class);
-            UserLocalDataSource userLocalDataSource = UserLocalDataSource.getInstance(QuestionListActivity.this);
-            intent.putExtra("userId",userLocalDataSource.getInt("id",0));
+        if (id == R.id.nav_home) {
+            Intent intent = new Intent(this, TimeLineActivity.class);
             startActivity(intent);
-            finish();
-        } else if (id == R.id.collection) {
-            Intent intent = new Intent(this,FollowingActivity.class);
-            intent.putExtra("userId",UserLocalDataSource.getInstance(QuestionListActivity.this).getInt("id",0));
-            intent.putExtra("selection",3);
-            startActivity(intent);
-        } else if (id == R.id.message) {
-            Intent intent = new Intent(this, MessageListActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.followee) {
+        } else if (id == R.id.nav_follow) {
             Intent intent = new Intent(this, FollowingActivity.class);
             intent.putExtra("userId",UserLocalDataSource.getInstance(this).getInt("id",0));
             startActivity(intent);
-
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(this, TimeLineActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.question_list_settings) {
+        } else if (id == R.id.nav_discovery) {
             Intent intent = new Intent(this, DiscoverActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_collection) {
+            Intent intent = new Intent(this, FollowingActivity.class);
+            intent.putExtra("userId",UserLocalDataSource.getInstance(this).getInt("id",0));
+            intent.putExtra("selection",3);
+
+            startActivity(intent);
+        } else if (id == R.id.nav_questions) {
+            Intent intent = new Intent(this, QuestionListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_info) {
+            Intent intent = new Intent(this, UserInfoDetailActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_msg){
+            Intent intent = new Intent(this, MessageListActivity.class);
             startActivity(intent);
         }
 

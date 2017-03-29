@@ -19,7 +19,7 @@ import cn.lawliex.ask.data.Message;
  */
 
 public class MessageDbHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "ask.db";
     private static final String TEXT_TYPES = " TEXT";
     private static final String DATE_TYPES = " DATE";

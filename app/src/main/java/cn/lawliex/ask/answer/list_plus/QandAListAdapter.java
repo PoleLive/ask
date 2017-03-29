@@ -27,7 +27,6 @@ public class QandAListAdapter extends BaseAdapter {
     public QandAListAdapter(QandAListFragment fragment, List<Answer> answerList) {
         this.fragment = fragment;
         this.datas = answerList;
-
     }
     @Override
     public int getCount() {
@@ -47,7 +46,6 @@ public class QandAListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-
         if(convertView == null){
             convertView = LayoutInflater.from(fragment.getActivity()).inflate(R.layout.q_and_a_list_item,parent,false);
             holder = new ViewHolder();
@@ -60,23 +58,20 @@ public class QandAListAdapter extends BaseAdapter {
             holder.likeTxt = (TextView)convertView.findViewById(R.id.q_and_a_like);
             holder.likeLayout = (LinearLayout) convertView.findViewById(R.id.q_and_a_like_layout);
             holder.commentLayout = (LinearLayout) convertView.findViewById(R.id.q_and_a_comment_layout);
-            Answer a = datas.get(position);
-            holder.nameTxt.setText(a.getAuthor());
-            holder.questionTxt.setText(a.getQuestionTitle());
-            holder.answerTxt.setText(a.getContent());
-            holder.likeTxt.setText(a.getLikeCount() + "");
-            holder.commentTxt.setText(a.getCommentCount() + "");
-
 
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
-
+        Answer a = datas.get(position);
+        holder.nameTxt.setText(a.getAuthor());
+        holder.questionTxt.setText(a.getQuestionTitle());
+        holder.answerTxt.setText(a.getContent());
+        holder.likeTxt.setText(a.getLikeCount() + "");
+        holder.commentTxt.setText(a.getCommentCount() + "");
         Glide.with(fragment.getActivity()).load(UrlContract.USER_HEAD_URL + datas.get(position).getHeadUrl()).into(holder.photo );
         return convertView;
     }
-
     class ViewHolder{
         ImageView photo;
         TextView nameTxt, questionTxt, answerTxt, likeTxt, commentTxt, followTxt;

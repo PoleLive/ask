@@ -13,13 +13,11 @@ import cn.lawliex.ask.data.Answer;
 public class AnswerAddContract {
     interface Presenter extends BasePresenter{
         void submitAnswer(Answer answer);
-
     }
     interface View extends BaseView<Presenter>{
         Activity getActivity();
         Answer getAnswer();
         void showErrorMessage(String errMsg);
         void toQuestionDetail(int questionId);
-        
     }
 }

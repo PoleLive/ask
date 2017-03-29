@@ -12,7 +12,10 @@ import android.widget.TextView;
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.data.User;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
+import cn.lawliex.ask.discover.DiscoverActivity;
 import cn.lawliex.ask.question.list.QuestionListActivity;
+import cn.lawliex.ask.timeline.TimeLineActivity;
+import cn.lawliex.ask.timeline.TimeLineAdapter;
 
 
 /**
@@ -81,7 +84,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     }
     @Override
     public void toMainAct() {
-        Intent intent = new Intent(getActivity(), QuestionListActivity.class);
+        Intent intent = new Intent(getActivity(), TimeLineActivity.class);
         startActivity(intent);
         getActivity().finish();
     }

@@ -1,5 +1,6 @@
 package cn.lawliex.ask.discover;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,10 +14,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.alibaba.fastjson.JSONObject;
+
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.answer.list_plus.QandAListContract;
 import cn.lawliex.ask.answer.list_plus.QandAListFragment;
 import cn.lawliex.ask.answer.list_plus.QandAListPresenter;
+import cn.lawliex.ask.data.source.local.UserLocalDataSource;
+import cn.lawliex.ask.data.source.remote.http.HttpRequests;
+import cn.lawliex.ask.following.FollowingActivity;
+import cn.lawliex.ask.login.LoginActivity;
+import cn.lawliex.ask.message.list.MessageListActivity;
+import cn.lawliex.ask.profile.other.detail.UserInfoDetailActivity;
+import cn.lawliex.ask.question.list.QuestionListActivity;
+import cn.lawliex.ask.timeline.TimeLineActivity;
+import cn.lawliex.ask.util.AskHelper;
+import rx.Subscriber;
 
 public class DiscoverActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -45,7 +58,7 @@ public class DiscoverActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        setTitle("发现");
         QandAListFragment fragment = (QandAListFragment) getFragmentManager().findFragmentById(R.id.activity_discover_fragment);
         QandAListContract.Presenter presenter= new QandAListPresenter(fragment);
     }
@@ -76,6 +89,27 @@ public class DiscoverActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
+                @Override
+                public void onCompleted() {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+                }
+
+                @Override
+                public void onNext(JSONObject jsonObject) {
+                    if (jsonObject.getInteger("code") == 0){
+                        UserLocalDataSource.getInstance(DiscoverActivity.this).logout();
+                        Intent intent = new Intent(DiscoverActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        DiscoverActivity.this.finish();
+                    }
+                }
+            }).post("logout", AskHelper.getRequestMap(this));
             return true;
         }
 
@@ -88,18 +122,32 @@ public class DiscoverActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_home) {
+            Intent intent = new Intent(this, TimeLineActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_follow) {
+            Intent intent = new Intent(this, FollowingActivity.class);
+            intent.putExtra("userId",UserLocalDataSource.getInstance(this).getInt("id",0));
+            startActivity(intent);
+        } else if (id == R.id.nav_discovery) {
+            if(this instanceof  DiscoverActivity)
+                return true;
+            Intent intent = new Intent(this, DiscoverActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_collection) {
+            Intent intent = new Intent(this, FollowingActivity.class);
+            intent.putExtra("selection",3);
+            intent.putExtra("userId", UserLocalDataSource.getInstance(this).getInt("id",0));
+            startActivity(intent);
+        } else if (id == R.id.nav_questions) {
+            Intent intent = new Intent(this, QuestionListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_info) {
+            Intent intent = new Intent(this, UserInfoDetailActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_msg){
+            Intent intent = new Intent(this, MessageListActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
