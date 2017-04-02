@@ -24,7 +24,7 @@
         <activity
             android:name=".question.list.QuestionListActivity"
             android:label="@string/title_activity_question_list"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".question.add.QuestionAddActivity" />
         <activity
@@ -32,11 +32,17 @@
             android:launchMode="singleInstance" />
         <activity android:name=".answer.add.AnswerAddActivity" />
         <activity android:name=".answer.detail.AnswerDetailActivity" />
-        <activity android:name=".profile.other.detail.UserInfoDetailActivity" />
+        <activity
+            android:name=".profile.other.detail.UserInfoDetailActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".comment.CommentActivity" />
         <activity android:name=".answer.list_plus.QandAListActivity" />
         <activity android:name=".followers.FollowersActivity" />
-        <activity android:name=".message.list.MessageListActivity" />
+        <activity
+            android:name=".message.list.MessageListActivity"
+            android:launchMode="singleTask"
+            />
         <activity android:name=".message.add.MessageAddActivity" />
         <activity android:name=".message.detail.MessageDetailActivity" />
         <activity android:name=".following.FollowingActivity" />
@@ -45,12 +51,18 @@
         <activity
             android:name=".timeline.TimeLineActivity"
             android:label="@string/title_activity_time_line"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".discover.DiscoverActivity"
+            android:launchMode="singleTask"
             android:label="@string/title_activity_discover"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".follow.FollowActivity"></activity>
+        <activity
+            android:name=".follow.FollowActivity"
+            android:launchMode="singleTask"
+            />
+        <activity android:name=".question.simplelist.QuestionSimpleListActivity"></activity>
     </application>
 
 </manifest>

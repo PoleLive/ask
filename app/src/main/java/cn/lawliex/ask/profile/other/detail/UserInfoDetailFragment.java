@@ -43,6 +43,7 @@ import cn.lawliex.ask.following.FollowingActivity;
 import cn.lawliex.ask.message.add.MessageAddActivity;
 import cn.lawliex.ask.message.detail.MessageDetailActivity;
 import cn.lawliex.ask.question.list.QuestionListActivity;
+import cn.lawliex.ask.question.simplelist.QuestionSimpleListActivity;
 import cn.lawliex.ask.util.AskHelper;
 import cn.lawliex.ask.util.GlideImageLoader;
 import okhttp3.MediaType;
@@ -171,7 +172,7 @@ public class UserInfoDetailFragment extends Fragment implements UserInfoDetailCo
                 startActivity(intenta);
                 break;
             case R.id.user_info_detail_question_layout:
-                Intent intent = new Intent(getActivity(), QuestionListActivity.class);
+                Intent intent = new Intent(getActivity(), QuestionSimpleListActivity.class);
                 intent.putExtra("userId", userInfo.getId());
                 startActivity(intent);
                 break;
