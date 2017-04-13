@@ -47,6 +47,7 @@
                     android:background="@mipmap/visits"
                     />
                 <TextView
+                    android:id="@+id/question_detail_txt_follow_count"
                     android:text="355"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

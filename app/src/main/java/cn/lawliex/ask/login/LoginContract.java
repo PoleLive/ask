@@ -27,6 +27,7 @@ public interface LoginContract {
         boolean isPasswordValid(String password);
         boolean isUsernameValid(String username);
         void toMainAct();
+        void toAdminAct();
         void saveUser(User user);
         void saveTicket(String ticket);
         String getTicket();

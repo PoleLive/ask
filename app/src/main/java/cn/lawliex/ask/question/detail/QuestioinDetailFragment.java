@@ -25,7 +25,7 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
     TextView titleTxt;
     TextView contentTxt;
     TextView answerCountTxt1,answerCountTxt2;
-    TextView visitCountTxt;
+    TextView followCountTxt;
     ListView answerListView;
     Button followBn;
     Button answerBn;
@@ -44,6 +44,7 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
         contentTxt.setText(question.getContent());
         answerCountTxt1.setText(question.getCommentCount()+"");
         answerCountTxt2.setText(question.getCommentCount()+"");
+        followCountTxt.setText(question.getLikeCount()+"");
     }
 
     @Override
@@ -87,6 +88,8 @@ public class QuestioinDetailFragment extends Fragment implements QuestionDetailC
         titleTxt = (TextView)view.findViewById(R.id.question_detail_txt_title);
         answerCountTxt1 = (TextView)view.findViewById(R.id.question_detail_txt_answer_count1);
         answerCountTxt2 = (TextView)view.findViewById(R.id.question_detail_txt_answer_count2);
+        followCountTxt = (TextView)view.findViewById(R.id.question_detail_txt_follow_count);
+
         initListener();
 
         return view;

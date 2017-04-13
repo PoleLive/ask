@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import cn.lawliex.ask.R;
+import cn.lawliex.ask.admin.home.MainActivity;
 import cn.lawliex.ask.data.User;
 import cn.lawliex.ask.data.source.local.UserLocalDataSource;
 import cn.lawliex.ask.discover.DiscoverActivity;
@@ -88,6 +89,13 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
         startActivity(intent);
         getActivity().finish();
     }
+
+    @Override
+    public void toAdminAct() {
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public void saveUser(User user) {
         localDataSource.saveUser(user);

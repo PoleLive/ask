@@ -38,7 +38,10 @@ public class LoginPresenter implements LoginContract.Presenter {
                 if (jsonObject.getInteger("code") == 0){
                     User user = jsonObject.getJSONObject("user").toJavaObject(User.class);
                     UserLocalDataSource.getInstance(loginView.getActivity()).saveUser(user);
-                    loginView.toMainAct();
+                    if(user.getName().equals("admin"))
+                        loginView.toAdminAct();
+                    else
+                        loginView.toMainAct();
                 }
             }
         }).post("user/update", AskHelper.getRequestMap(loginView.getActivity()));
@@ -72,7 +75,10 @@ public class LoginPresenter implements LoginContract.Presenter {
                             User user = result.getData();
 
                             loginView.saveUser(user);
-                            loginView.toMainAct();
+                            if(user.getName().equals("admin"))
+                                loginView.toAdminAct();
+                            else
+                                loginView.toMainAct();
                         }
                         else
                             loginView.setErrorMessage(result.getMsg());

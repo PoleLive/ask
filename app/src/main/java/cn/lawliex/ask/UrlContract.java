@@ -15,6 +15,7 @@ public class UrlContract {
     public static final String REGISTER_PATH = "register";
     public static final String TEST_LOGINED = "test";
     public static final String QUESTION_LIST = "question/list";
+    public static final String QUESTION_ADMIN_LIST = "question/adminlist";
     public static final String QUESTION_ADD = "question/add";
     public static final String QUESTION_DETAIL = "question/detail";
     public static final String ANSWER_ADD = "answer/add";
@@ -30,6 +31,9 @@ public class UrlContract {
     public static final String ISFOLLOWER = "follow/isfollower";
     //判断并改变状态
     public static final String ISFOLLOWERED = "follow/isfollowered";
+    public static final String QUSTIION_DELETE = "question/delete";
+    public static final String QUSTION_CANCEL_DELETE = "question/canceldelete";
+
     public static final String USREINFO = "user/info";
     public static final String COMMENT_ADD = "comment/add";
     public static final String COMMENT_DETAIL = "comment/detail";

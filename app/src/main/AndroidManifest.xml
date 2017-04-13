@@ -34,15 +34,13 @@
         <activity android:name=".answer.detail.AnswerDetailActivity" />
         <activity
             android:name=".profile.other.detail.UserInfoDetailActivity"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
         <activity android:name=".comment.CommentActivity" />
         <activity android:name=".answer.list_plus.QandAListActivity" />
         <activity android:name=".followers.FollowersActivity" />
         <activity
             android:name=".message.list.MessageListActivity"
-            android:launchMode="singleTask"
-            />
+            android:launchMode="singleTask" />
         <activity android:name=".message.add.MessageAddActivity" />
         <activity android:name=".message.detail.MessageDetailActivity" />
         <activity android:name=".following.FollowingActivity" />
@@ -55,14 +53,16 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".discover.DiscoverActivity"
-            android:launchMode="singleTask"
             android:label="@string/title_activity_discover"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".follow.FollowActivity"
-            android:launchMode="singleTask"
-            />
-        <activity android:name=".question.simplelist.QuestionSimpleListActivity"></activity>
+            android:launchMode="singleTask" />
+        <activity android:name=".question.simplelist.QuestionSimpleListActivity" />
+        <activity android:name=".admin.home.MainActivity" />
+        <activity android:name=".admin.question.AdminQuestionActivity" />
+        <activity android:name=".admin.answer.AdminAnswerActivity"></activity>
     </application>
 
 </manifest>

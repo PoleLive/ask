@@ -17,6 +17,16 @@ public class Question {
     private int likeCount;
     private String headUrl;
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    private int status;
+
     public String getHeadUrl() {
         return headUrl;
     }
