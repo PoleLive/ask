@@ -1,8 +1,7 @@
-package cn.lawliex.ask.comment;
+package cn.lawliex.ask.admin.comment;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +19,17 @@ import rx.Subscriber;
 
 public class CommentPresenter implements CommentContract.Presenter {
     CommentContract.View view;
-    int answerId;
+
     public CommentPresenter(CommentContract.View view) {
         this.view = view;
         view.setPresenter(this);
-        answerId = view.getActivity().getIntent().getIntExtra("answerId",0);
-
         start();
     }
 
     @Override
     public void loadComments() {
         Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
-        map.put("answerId",answerId + "");
+
         HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
             @Override
             public void onCompleted() {
@@ -57,7 +54,7 @@ public class CommentPresenter implements CommentContract.Presenter {
                 view.showErrorMsg("error");
 
             }
-        }).post(UrlContract.COMMETN_LIST,map);
+        }).post(UrlContract.COMMENT_ALL,map);
 
     }
 
@@ -65,7 +62,7 @@ public class CommentPresenter implements CommentContract.Presenter {
     public void addComment() {
 
         Map<String,String> map = AskHelper.getRequestMap(view.getActivity());
-        map.put("answerId",answerId + "");
+
         map.put("content",view.getSendContent());
         HttpRequests.getInstance().subscribe(new Subscriber<JSONObject>() {
             @Override

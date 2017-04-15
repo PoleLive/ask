@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import cn.lawliex.ask.R;
 import cn.lawliex.ask.admin.answer.AdminAnswerActivity;
+import cn.lawliex.ask.admin.comment.CommentActivity;
 import cn.lawliex.ask.admin.question.AdminQuestionActivity;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     TextView bn_user, bn_question, bn_comment, bn_answer;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(answerIntent);
                 break;
             case R.id.activity_main_admin_comment:
+                Intent intent = new Intent(this, CommentActivity.class);
+                startActivity(intent);
                 break;
             case R.id.activity_main_admin_question:
                 Intent questionIntent = new Intent(MainActivity.this, AdminQuestionActivity.class);

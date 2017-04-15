@@ -62,7 +62,8 @@
         <activity android:name=".question.simplelist.QuestionSimpleListActivity" />
         <activity android:name=".admin.home.MainActivity" />
         <activity android:name=".admin.question.AdminQuestionActivity" />
-        <activity android:name=".admin.answer.AdminAnswerActivity"></activity>
+        <activity android:name=".admin.answer.AdminAnswerActivity" />
+        <activity android:name=".admin.comment.CommentActivity"></activity>
     </application>
 
 </manifest>
